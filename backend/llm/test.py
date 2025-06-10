@@ -247,9 +247,10 @@ async def parse_pdf(path): #return
     return pages
 
 if __name__ == "__main__":
+   print(os.getcwd())
    load_dotenv()
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
-   docs= asyncio.run(parse_pdf(r"data\COMP4521_L6 - Data Management on Cloud.pdf"))
+   docs= asyncio.run(parse_pdf(r"../../data/COMP4521_L6 - Data Management on Cloud.pdf"))
    print(len(docs))
 #    for i in range(10,13):
 #        print(docs[i].page_content)
@@ -276,7 +277,7 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   with open("questions.json", "w") as json_file:
+   with open("../../output/questions_v0.json", "w") as json_file:
     json_file.write(json_string)
 
        

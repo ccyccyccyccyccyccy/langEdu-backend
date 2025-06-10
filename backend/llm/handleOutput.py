@@ -1,6 +1,7 @@
 import json
 import markdown
 import pdfkit
+import os
 
 def combineJsonToMD(filename: str):
     markdown = ""
@@ -25,7 +26,11 @@ def saveMarkdownToFile(markdownStr: str, filename: str):
 
 if __name__ == "__main__":
     # Combine JSON to Markdown
-    markdown_content = combineJsonToMD("questions.json")
+    json_path= r"..\..\output\questions_v0.json"
+    markdown_content = combineJsonToMD(json_path)
+    filename= os.path.splitext(json_path)[0]+".md"
+    with open (filename, 'w') as file:
+        file.write(markdown_content)
     
     # Save Markdown to PDF
-    saveMarkdownToFile(markdown_content, "questions.md")
+    #saveMarkdownToFile(markdown_content, "..\..\output\questions_v0.md")

@@ -3,6 +3,8 @@ import asyncio
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader
 from typing import Optional, List, Tuple
+
+from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import AzureChatOpenAI
 from pydantic import BaseModel, Field
@@ -86,6 +88,36 @@ class SimpleCache(BaseCache):
     def update(self, key: str, value: str):
         pass  # No caching implemented
 
+def combine_docs(old_docs, max_size):
+    combined_docs=[]
+    current_end_page=0
+
+    while old_docs:
+        first_doc= old_docs[0]
+        current_start_page = first_doc.metadata['page']
+        current_content = ""
+        current_counter=0 #how many docs away from first doc
+        while (len(current_content.split(' '))<max_size and current_counter<len(old_docs)): #the number of words is smaller than max size
+            current_content += old_docs[current_counter].page_content
+            current_end_page = old_docs[current_counter].metadata['page']
+            current_counter+=1
+        #make a new document
+        new_doc =  Document(
+    page_content= current_content,
+    metadata=first_doc.metadata #keep all other fields of metadata
+)
+        new_doc.metadata['page']= str(current_start_page) + "-" + str(current_end_page)
+        combined_docs.append(new_doc)
+        #remove the old docs which have been processed
+        old_docs= old_docs[current_counter:]
+    return combined_docs
+
+
+
+
+
+
+
 # Function to extract concepts
 def extract_concept(text):  # Input: List of langchain docs
     # Define a custom prompt to provide instructions and any additional context
@@ -122,9 +154,9 @@ def extract_concept(text):  # Input: List of langchain docs
     )
 
     # Process the first few texts
-    
+
     extractions = extractor.batch(
-        [{"text": t} for t in text],
+        [{"text": t} for t in text], #t is of the type Document
         {"max_concurrency": 5},  # Limit concurrency
     )
 
@@ -252,10 +284,13 @@ if __name__ == "__main__":
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
    docs= asyncio.run(parse_pdf(r"../../data/COMP4521_L6 - Data Management on Cloud.pdf"))
    print(len(docs))
-#    for i in range(10,13):
-#        print(docs[i].page_content)
+   combined_docs= combine_docs(docs, 100)
+   for i in range(len(combined_docs)):
+        print(combined_docs[i].metadata)
 #    print("========================================")
-   result= extract_concept(docs)
+
+   result= extract_concept(combined_docs)
+
    for i in range(len(result)):
     print(result[i])
    print("========================================")
@@ -277,10 +312,10 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   with open("../../output/questions_v0.json", "w") as json_file:
+   with open("../../output/questions_v0.1.json", "w") as json_file:
     json_file.write(json_string)
 
-       
+
    
 
 

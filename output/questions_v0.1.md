@@ -3,597 +3,35 @@
 ## Questions
 
 ### Question 1:
-What Firebase service would you use to manage user authentication in a mobile application?
-a) Firestore  
-b) Firebase Cloud Messaging  
-c) Firebase Authentication  
+What is the primary purpose of Firebase Authentication in a mobile app?
+a) To store user data  
+b) To allow users to sign in using third-party accounts  
+c) To send push notifications  
+d) To manage app performance  
+
+**Answer:** b) To allow users to sign in using third-party accounts
+
+---
+
+### Question 2:
+In the context of Firebase Cloud Messaging, what could be a consequence of misconfiguring notification settings to target a specific geographical region?
+a) All users receive notifications  
+b) Only users in the targeted region receive notifications  
+c) Notifications are sent to users' email addresses  
+d) Notifications are delayed indefinitely  
+
+**Answer:** b) Only users in the targeted region receive notifications
+
+---
+
+### Question 3:
+Which of the following Firebase services is primarily used for real-time data synchronization?
+a) Firebase Authentication  
+b) Firebase Cloud Firestore  
+c) Firebase Cloud Messaging  
 d) Firebase Hosting  
-**Answer:** c) Firebase Authentication
 
-### Question 2:
-In the context of Firebase, what is Firestore primarily used for?
-a) Sending push notifications  
-b) Storing user authentication data  
-c) Storing and syncing data in real-time  
-d) Hosting web applications  
-**Answer:** c) Storing and syncing data in real-time
-
-### Question 3:
-What could be a consequence of setting Firestore security rules too permissively?
-a) Users can only read their own data  
-b) Unauthorized users can access private messages  
-c) The application will crash  
-d) Data will be stored in a different format  
-**Answer:** b) Unauthorized users can access private messages
-
-### Question 4:
-Given the following Firestore security rule, what does it allow?
-```plaintext
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read, write: if request.auth != null;
-    }
-  }
-}
-```
-a) Anyone can read and write to the users collection  
-b) Only authenticated users can read and write to their own user document  
-c) Only the owner of the document can read and write to it  
-d) No one can read or write to the users collection  
-**Answer:** b) Only authenticated users can read and write to their own user document
-
-### Question 5:
-Which Firebase service would you use to send notifications to users when someone likes their post?
-a) Firestore  
-b) Firebase Cloud Messaging  
-c) Firebase Storage  
-d) Firebase Functions  
-**Answer:** b) Firebase Cloud Messaging
-
-### Question 6:
-What is a potential risk of using Firestore without properly configured security rules?
-a) Increased app performance  
-b) Data redundancy  
-c) Data breaches and unauthorized access  
-d) Slower data retrieval times  
-**Answer:** c) Data breaches and unauthorized access
-
-### Question 7:
-If a developer wants to implement a real-time chat feature using Firebase, which combination of services should they primarily use?
-a) Firebase Hosting and Firebase Storage  
-b) Firebase Authentication and Firestore  
-c) Firebase Cloud Functions and Firebase Analytics  
-d) Firebase Cloud Messaging and Firebase Hosting  
-**Answer:** b) Firebase Authentication and Firestore
-
----
-
-# Realtime Database
-
-## Questions
-
-### Question 1:
-What is a primary benefit of using a Realtime Database in a chat application?
-
-a) It allows users to send messages without an internet connection.  
-b) It stores messages as plain text files.  
-c) It enables all connected clients to receive new messages instantly.  
-d) It requires users to refresh the app to see new messages.  
-
-**Answer:** c) It enables all connected clients to receive new messages instantly.
-
----
-
-### Question 2:
-In a collaborative document editor using a Realtime Database, what is a potential issue that may arise when multiple users edit the same section of the document simultaneously?
-
-a) The database will automatically save all changes without conflict.  
-b) One user's changes may overwrite another's if not managed properly.  
-c) The document will become read-only for all users.  
-d) All users will be logged out of the application.  
-
-**Answer:** b) One user's changes may overwrite another's if not managed properly.
-
----
-
-### Question 3:
-Given the following JSON structure for a chat message in a Realtime Database, which of the following represents a correct way to store a new message?
-
-```json
-{
-  "messages": {
-    "message1": {
-      "user": "Alice",
-      "text": "Hello, everyone!",
-      "timestamp": "2023-10-01T12:00:00Z"
-    }
-  }
-}
-```
-
-a) `database.ref('messages').set({ user: 'Alice', text: 'Hello, everyone!', timestamp: '2023-10-01T12:00:00Z' });`  
-b) `database.ref('messages/message1').push({ user: 'Alice', text: 'Hello, everyone!', timestamp: '2023-10-01T12:00:00Z' });`  
-c) `database.ref('messages/message1').set({ user: 'Alice', text: 'Hello, everyone!', timestamp: '2023-10-01T12:00:00Z' });`  
-d) `database.ref('messages').add({ user: 'Alice', text: 'Hello, everyone!', timestamp: '2023-10-01T12:00:00Z' });`  
-
-**Answer:** c) `database.ref('messages/message1').set({ user: 'Alice', text: 'Hello, everyone!', timestamp: '2023-10-01T12:00:00Z' });`
-
----
-
-### Question 4:
-What data format is typically used to store messages in a Realtime Database?
-
-a) XML  
-b) CSV  
-c) JSON  
-d) HTML  
-
-**Answer:** c) JSON
-
----
-
-### Question 5:
-In a Realtime Database, how can you ensure that all users see the latest version of a document when multiple users are editing it?
-
-a) By allowing only one user to edit at a time.  
-b) By implementing a conflict resolution strategy.  
-c) By disabling real-time updates.  
-d) By saving changes only at the end of the editing session.  
-
-**Answer:** b) By implementing a conflict resolution strategy.
-
----
-
-# Use cases for Realtime Database
-
-## Questions
-
-### Question 1:
-What is a typical use case for a Realtime Database?
-a) Storing static website content  
-b) A chat application where users can send and receive messages in real-time  
-c) A photo editing software  
-d) A video streaming service  
-
-**Answer:** b) A chat application where users can send and receive messages in real-time
-
----
-
-### Question 2:
-In a collaborative document editing tool using a Realtime Database, what is a potential challenge that developers must address?
-a) Ensuring all users have the same internet speed  
-b) Handling conflicts when two users edit the same section simultaneously  
-c) Making sure the document is saved locally  
-d) Preventing users from accessing the document  
-
-**Answer:** b) Handling conflicts when two users edit the same section simultaneously
-
----
-
-### Question 3:
-Which of the following scenarios best illustrates the use of a Realtime Database?
-a) A blog where articles are published once a week  
-b) A social media platform where users can post updates and see them instantly  
-c) An online store with a static product catalog  
-d) A personal diary application  
-
-**Answer:** b) A social media platform where users can post updates and see them instantly
-
----
-
-### Question 4:
-Consider the following code snippet for a chat application using a Realtime Database:
-
-```javascript
-const chatRef = database.ref('chats');
-chatRef.on('child_added', (snapshot) => {
-    const message = snapshot.val();
-    displayMessage(message);
-});
-```
-What does the `child_added` event listener do in this context?
-a) It retrieves all messages at once  
-b) It listens for new messages added to the chat in real-time  
-c) It deletes messages from the chat  
-d) It updates existing messages in the chat  
-
-**Answer:** b) It listens for new messages added to the chat in real-time
-
----
-
-### Question 5:
-What feature of a Realtime Database is crucial for a collaborative document editing tool?
-a) Data encryption  
-b) Real-time synchronization of changes  
-c) User authentication  
-d) Data backup  
-
-**Answer:** b) Real-time synchronization of changes
-
---- 
-
-### Question 6:
-In a chat application, if two users send messages at the same time, what must the Realtime Database ensure?
-a) Only one message is sent  
-b) Messages are sent in the order they were typed  
-c) Both messages are received and displayed without conflicts  
-d) Messages are stored for later retrieval  
-
-**Answer:** c) Both messages are received and displayed without conflicts
-
----
-
-# Main services provided by Firebase
-
-## Questions
-
-### Question 1:
-What is one of the main services provided by Firebase that allows real-time data synchronization?
-a) Firebase Hosting  
-b) Firebase Realtime Database  
-c) Firebase Cloud Functions  
-d) Firebase Authentication  
-**Answer:** b) Firebase Realtime Database
-
-### Question 2:
-In the context of a live sports scoreboard using Firebase, which feature is crucial for ensuring that fans see the most current game statistics without refreshing the page?
-a) Firebase Storage  
-b) Real-time data synchronization  
-c) User authentication  
-d) Static file hosting  
-**Answer:** b) Real-time data synchronization
-
-### Question 3:
-Which of the following scenarios best illustrates a tricky implementation of Firebase's Realtime Database?
-a) A blog that updates posts every hour  
-b) A live auction platform where multiple users can place bids simultaneously  
-c) A weather app that fetches data every 10 minutes  
-d) A photo gallery that displays images from a local directory  
-**Answer:** b) A live auction platform where multiple users can place bids simultaneously
-
-### Question 4:
-Consider the following code snippet for updating a score in a Firebase Realtime Database:
-
-```javascript
-firebase.database().ref('games/game1/score').set({
-  home: 10,
-  away: 5
-});
-```
-What does this code do?
-a) It retrieves the current score of the game.  
-b) It deletes the score of the game.  
-c) It updates the score of the home and away teams to 10 and 5, respectively.  
-d) It initializes the score for the game to 10 and 5.  
-**Answer:** c) It updates the score of the home and away teams to 10 and 5, respectively.
-
-### Question 5:
-Which Firebase service would you use to ensure that the highest bid in a live auction is always displayed correctly?
-a) Firebase Cloud Messaging  
-b) Firebase Realtime Database  
-c) Firebase Authentication  
-d) Firebase Analytics  
-**Answer:** b) Firebase Realtime Database
-
----
-
-# Cloud Firestore
-
-## Questions
-
-### Question 1:
-In a collaborative task management tool using Cloud Firestore, what is the primary benefit of real-time updates for team members?
-a) It reduces the need for internet connectivity  
-b) It allows team members to see changes instantly, improving collaboration  
-c) It eliminates the need for a user interface  
-d) It ensures that tasks are completed faster  
-
-**Answer:** b) It allows team members to see changes instantly, improving collaboration
-
----
-
-### Question 2:
-In a live polling application using Cloud Firestore, what is a critical challenge when multiple users vote simultaneously?
-a) Ensuring that all users have the same internet speed  
-b) Counting votes accurately and displaying results correctly  
-c) Preventing users from voting more than once  
-d) Making the application visually appealing  
-
-**Answer:** b) Counting votes accurately and displaying results correctly
-
----
-
-### Question 3:
-Given the following code snippet for adding a task to a Firestore collection, what will happen if two users try to add a task at the same time?
-
-```javascript
-const db = firebase.firestore();
-db.collection("tasks").add({
-    title: "New Task",
-    completed: false
-});
-```
-
-a) One of the tasks will be lost  
-b) Both tasks will be added successfully  
-c) An error will occur due to simultaneous writes  
-d) The application will crash  
-
-**Answer:** b) Both tasks will be added successfully
-
----
-
-### Question 4:
-Which of the following features of Cloud Firestore is essential for maintaining consistency in a live polling application?
-a) Offline support  
-b) Real-time listeners  
-c) Data encryption  
-d) User authentication  
-
-**Answer:** b) Real-time listeners
-
----
-
-### Question 5:
-In the context of a collaborative task management tool, which Firestore feature would you use to ensure that all team members receive updates when a task is marked as complete?
-a) Firestore Security Rules  
-b) Firestore Batch Writes  
-c) Firestore Real-time Updates  
-d) Firestore Indexing  
-
-**Answer:** c) Firestore Real-time Updates
-
----
-
-### Question 6:
-What is the main advantage of using Cloud Firestore over traditional databases for a live polling application?
-a) It requires less coding  
-b) It automatically scales with the number of users  
-c) It is free to use  
-d) It does not require internet access  
-
-**Answer:** b) It automatically scales with the number of users
-
----
-
-# Data Structure - Collections and Documents
-
-## Questions
-
-### Question 1:
-In a customer support chat system, which data structure is most suitable for storing messages exchanged between users and support agents in real-time?
-
-a) Stack  
-b) Queue  
-c) Linked List  
-d) Hash Table  
-
-**Answer:** b) Queue
-
----
-
-### Question 2:
-In a multiplayer online game, which of the following is a key challenge when synchronizing player actions in real-time?
-
-a) Ensuring all players have the same internet speed  
-b) Managing the game state updates efficiently  
-c) Limiting the number of players in the game  
-d) Reducing the size of the game assets  
-
-**Answer:** b) Managing the game state updates efficiently
-
----
-
-### Question 3:
-Consider the following code snippet for a chat system using a collection to store messages:
-
-```javascript
-const messages = [
-    { user: 'Alice', text: 'Hello!', timestamp: 1620000000000 },
-    { user: 'Bob', text: 'Hi Alice!', timestamp: 1620000001000 }
-];
-```
-What data structure is being used to store the messages?
-
-a) Array  
-b) Object  
-c) Set  
-d) Map  
-
-**Answer:** a) Array
-
----
-
-### Question 4:
-In a real-time database for a multiplayer game, which of the following strategies can help ensure all players see the same game state?
-
-a) Allow players to update their game state independently  
-b) Use a centralized server to manage game state updates  
-c) Send game state updates only when a player requests them  
-d) Limit the number of players in the game  
-
-**Answer:** b) Use a centralized server to manage game state updates
-
----
-
-### Question 5:
-Which of the following best describes a "real-time database"?
-
-a) A database that only stores data temporarily  
-b) A database that allows for immediate data retrieval and updates  
-c) A database that requires manual refreshing to see updates  
-d) A database that is only accessible during business hours  
-
-**Answer:** b) A database that allows for immediate data retrieval and updates
-
---- 
-
-### Question 6:
-In the context of a customer support chat system, what is the primary benefit of using a real-time database?
-
-a) It reduces the cost of data storage  
-b) It allows for instant communication between users and agents  
-c) It simplifies the user interface  
-d) It eliminates the need for internet connectivity  
-
-**Answer:** b) It allows for instant communication between users and agents
-
---- 
-
-### Question 7:
-In a real-time multiplayer game, which data structure would be most effective for tracking the positions of all players?
-
-a) Array  
-b) Stack  
-c) Queue  
-d) Tree  
-
-**Answer:** a) Array
-
---- 
-
-### Question 8:
-What is a potential drawback of using a real-time database in a multiplayer online game?
-
-a) Increased latency in data updates  
-b) Complexity in managing concurrent updates  
-c) Limited scalability for large player bases  
-d) All of the above  
-
-**Answer:** d) All of the above
-
---- 
-
-These questions aim to assess understanding of data structures and their applications in real-time systems, particularly in customer support and multiplayer gaming contexts.
-
----
-
-# CRUD Operations - Create Data
-
-## Questions
-
-### Questions on CRUD Operations
-
-**Question 1:** In a CRUD application, what does the 'C' stand for?  
-a) Create  
-b) Change  
-c) Copy  
-d) Clear  
-**Answer:** a) Create
-
----
-
-**Question 2:** Which of the following is an example of a 'Read' operation in a CRUD application?  
-a) Adding a new user to the database  
-b) Updating user information  
-c) Retrieving user details from the database  
-d) Deleting a user from the database  
-**Answer:** c) Retrieving user details from the database
-
----
-
-**Question 3:** In a real-time stock trading application, which of the following is crucial for ensuring that users see the most current stock prices?  
-a) Regularly scheduled updates every minute  
-b) Instantaneous updates across all users' screens  
-c) Manual refresh by the user  
-d) Sending daily summaries via email  
-**Answer:** b) Instantaneous updates across all users' screens
-
----
-
-**Question 4:** Consider the following code snippet for creating a new user in a database. What is the purpose of the `createUser` function?
-
-```javascript
-function createUser(username, password) {
-    database.ref('users/' + username).set({
-        password: password,
-        createdAt: new Date().toISOString()
-    });
-}
-```
-a) To delete a user from the database  
-b) To update an existing user's password  
-c) To create a new user with a username and password  
-d) To retrieve user information  
-**Answer:** c) To create a new user with a username and password
-
----
-
-**Question 5:** In the context of a live dashboard for monitoring website analytics, which of the following operations would be considered a 'Delete' operation?  
-a) Adding a new metric for user engagement  
-b) Removing outdated metrics from the dashboard  
-c) Updating the visitor count  
-d) Fetching page views data  
-**Answer:** b) Removing outdated metrics from the dashboard
-
----
-
-**Question 6:** What is a potential challenge when implementing CRUD operations in a real-time stock trading application?  
-a) Ensuring that the database is always empty  
-b) Handling rapid updates and ensuring data consistency  
-c) Making the user interface visually appealing  
-d) Limiting the number of users accessing the application  
-**Answer:** b) Handling rapid updates and ensuring data consistency
-
----
-
-**Question 7:** Which of the following best describes the 'Update' operation in a CRUD context?  
-a) Adding new data to the database  
-b) Modifying existing data in the database  
-c) Removing data from the database  
-d) Retrieving data from the database  
-**Answer:** b) Modifying existing data in the database
-
----
-
-**Question 8:** In a real-time application, what technology is often used to ensure that data is updated instantly across all users' screens?  
-a) Static HTML pages  
-b) WebSockets  
-c) FTP transfers  
-d) Email notifications  
-**Answer:** b) WebSockets
-
---- 
-
-These questions cover various aspects of CRUD operations, focusing on both theoretical understanding and practical application in real-time scenarios.
-
----
-
-# Use Cases
-
-## Questions
-
-### Question 1:
-What is a primary use case for Firebase Realtime Database?
-a) Storing large files  
-b) Real-time data synchronization across clients  
-c) Image processing  
-d) Video streaming  
-
-**Answer:** b) Real-time data synchronization across clients
-
----
-
-### Question 2:
-In a chat application using Firebase Realtime Database, what is the benefit of using this database for message updates?
-a) Messages are stored locally on each client  
-b) Messages are updated only when the application is restarted  
-c) Messages are instantly updated for all users without refreshing the page  
-d) Messages can only be sent to one user at a time  
-
-**Answer:** c) Messages are instantly updated for all users without refreshing the page
-
----
-
-### Question 3:
-Which of the following is a challenge when implementing custom authentication in Firebase?
-a) Using built-in sign-in methods  
-b) Handling user credentials securely  
-c) Syncing data in real-time  
-d) Storing user data  
-
-**Answer:** b) Handling user credentials securely
+**Answer:** b) Firebase Cloud Firestore
 
 ---
 
@@ -611,61 +49,166 @@ firebase.auth().signInWithEmailAndPassword(email, password)
     var errorMessage = error.message;
   });
 ```
+
 What does the `signInWithEmailAndPassword` method do?
-a) Signs in a user with Google credentials  
-b) Signs in a user with email and password  
-c) Creates a new user account  
+a) Signs in a user with their Google account  
+b) Signs in a user using their email and password  
+c) Registers a new user with an email and password  
 d) Logs out the current user  
 
-**Answer:** b) Signs in a user with email and password
+**Answer:** b) Signs in a user using their email and password
 
 ---
 
 ### Question 5:
-When using Firebase Authentication, which of the following is NOT a built-in sign-in method?
-a) Email and password  
-b) Google  
-c) Facebook  
-d) Custom username and password  
+What is a potential drawback of using Firebase Cloud Messaging for sending notifications?
+a) It can only send notifications to Android devices  
+b) Notifications may not reach users if they are not in the targeted region  
+c) It requires a paid subscription  
+d) It does not support multimedia messages  
 
-**Answer:** d) Custom username and password
+**Answer:** b) Notifications may not reach users if they are not in the targeted region
 
---- 
+---
 
 ### Question 6:
-What is a potential risk when managing sessions with custom authentication in Firebase?
-a) Users can sign in with multiple accounts  
-b) User sessions may not expire properly  
-c) Users can only access their own data  
-d) Sessions are automatically managed by Firebase  
-
-**Answer:** b) User sessions may not expire properly
-
---- 
-
-### Question 7:
-In the context of Firebase Realtime Database, what does "data sync" refer to?
-a) Backing up data to a local server  
-b) Updating data across all connected clients in real-time  
-c) Storing data in a cloud storage service  
-d) Encrypting data for security  
-
-**Answer:** b) Updating data across all connected clients in real-time
-
---- 
-
-### Question 8:
-Which of the following Firebase services is primarily used for user authentication?
-a) Firebase Cloud Messaging  
+Which Firebase feature would you use to manage user sessions and authentication states?
+a) Firebase Cloud Functions  
 b) Firebase Realtime Database  
 c) Firebase Authentication  
-d) Firebase Hosting  
+d) Firebase Storage  
 
 **Answer:** c) Firebase Authentication
 
---- 
+---
 
-These questions cover the concepts of Firebase Realtime Database and Firebase Authentication, testing the understanding of their use cases, functionalities, and potential challenges.
+### Question 7:
+If a developer wants to send a notification to all users of their app using Firebase Cloud Messaging, which of the following configurations is necessary?
+a) Target specific user IDs  
+b) Use a topic that all users are subscribed to  
+c) Set geographical targeting  
+d) Send notifications only to users who have opted in  
+
+**Answer:** b) Use a topic that all users are subscribed to
+
+---
+
+### Question 8:
+What is the main benefit of using Firebase for mobile app development?
+a) It requires no coding skills  
+b) It provides a comprehensive suite of tools for backend services  
+c) It is only suitable for web applications  
+d) It is limited to Android development  
+
+**Answer:** b) It provides a comprehensive suite of tools for backend services
+
+---
+
+# Realtime Database
+
+## Questions
+
+### Question 1:
+What is a primary benefit of using a Realtime Database in a chat application?
+a) It allows users to send messages without an internet connection.  
+b) It stores messages as plain text files.  
+c) It enables all connected clients to receive new messages instantly.  
+d) It requires users to refresh the app to see new messages.  
+**Answer:** c) It enables all connected clients to receive new messages instantly.
+
+### Question 2:
+In a collaborative document editing application using a Realtime Database, what is a potential issue that may arise when multiple users edit the same section of a document?
+a) The database will automatically delete the section.  
+b) Users will not be able to see any changes made by others.  
+c) There may be conflicts that require resolution to ensure all changes are reflected.  
+d) The application will crash if too many users edit simultaneously.  
+**Answer:** c) There may be conflicts that require resolution to ensure all changes are reflected.
+
+### Question 3:
+Given the following JSON structure for a chat message in a Realtime Database, which of the following represents a correctly formatted message?
+```json
+{
+  "message": {
+    "user": "Alice",
+    "text": "Hello, Bob!",
+    "timestamp": "2023-10-01T12:00:00Z"
+  }
+}
+```
+a) { "message": "Hello, Bob!" }  
+b) { "user": "Alice", "text": "Hello, Bob!" }  
+c) { "message": { "user": "Alice", "text": "Hello, Bob!" } }  
+d) { "message": { "user": "Alice", "text": "Hello, Bob!", "timestamp": 2023-10-01 } }  
+**Answer:** c) { "message": { "user": "Alice", "text": "Hello, Bob!" } }
+
+### Question 4:
+What is a common strategy for conflict resolution in a Realtime Database when two users edit the same document section simultaneously?
+a) The last edit made is always kept.  
+b) All edits are discarded.  
+c) A version control system is implemented to track changes.  
+d) The application ignores the edits.  
+**Answer:** c) A version control system is implemented to track changes.
+
+### Question 5:
+Which of the following statements is true regarding the use of a Realtime Database in a mobile application?
+a) It can only be used for storing images.  
+b) It requires manual refreshing to see updates.  
+c) It allows for real-time synchronization of data across multiple clients.  
+d) It is limited to text-based data only.  
+**Answer:** c) It allows for real-time synchronization of data across multiple clients.
+
+---
+
+# Firebase Services
+
+## Questions
+
+### Question 1:
+What Firebase service is best suited for real-time data synchronization in a mobile app?
+a) Firebase Cloud Firestore  
+b) Firebase Realtime Database  
+c) Firebase Authentication  
+d) Firebase Hosting  
+**Answer:** b) Firebase Realtime Database
+
+### Question 2:
+In the context of Firebase Cloud Firestore, which of the following statements is true?
+a) Firestore supports complex queries that require joining multiple collections.  
+b) Firestore is optimized for simple queries and does not support joins.  
+c) Firestore automatically indexes all fields in every document.  
+d) Firestore is only suitable for storing images and videos.  
+**Answer:** b) Firestore is optimized for simple queries and does not support joins.
+
+### Question 3:
+Given the following code snippet, which Firebase service is being used to add a new document to a collection?
+
+```javascript
+firebase.firestore().collection("posts").add({
+  title: "New Post",
+  content: "This is the content of the new post."
+});
+```
+a) Firebase Realtime Database  
+b) Firebase Cloud Firestore  
+c) Firebase Authentication  
+d) Firebase Storage  
+**Answer:** b) Firebase Cloud Firestore
+
+### Question 4:
+What is a potential drawback of using Firebase Cloud Firestore for a social media app that requires complex querying?
+a) Firestore does not support real-time updates.  
+b) Firestore can lead to performance issues due to its lack of support for joins.  
+c) Firestore is not scalable for large datasets.  
+d) Firestore requires a paid plan for all features.  
+**Answer:** b) Firestore can lead to performance issues due to its lack of support for joins.
+
+### Question 5:
+Which Firebase service would you use to manage user authentication in your app?
+a) Firebase Realtime Database  
+b) Firebase Cloud Firestore  
+c) Firebase Authentication  
+d) Firebase Functions  
+**Answer:** c) Firebase Authentication
 
 ---
 
@@ -674,54 +217,443 @@ These questions cover the concepts of Firebase Realtime Database and Firebase Au
 ## Questions
 
 ### Question 1:
-What type of database is Cloud Firestore?
-a) Relational database  
-b) NoSQL database  
-c) Graph database  
-d) In-memory database  
-**Answer:** b) NoSQL database
+In a Cloud Firestore database for a bookstore, which of the following is the correct way to represent a book document within a 'books' collection?
 
-### Question 2:
-In an e-commerce app using Cloud Firestore, which feature allows for real-time updates of product listings?
-a) Batch processing  
-b) Offline capabilities  
-c) Real-time listeners  
-d) Scheduled queries  
-**Answer:** c) Real-time listeners
-
-### Question 3:
-What must developers handle when multiple users are editing the same document in Firestore?
-a) Data redundancy  
-b) Data integrity conflicts  
-c) Data encryption  
-d) Data normalization  
-**Answer:** b) Data integrity conflicts
-
-### Question 4:
-Given the following code snippet, what will happen when the user comes back online after making changes while offline?
-
-```javascript
-const docRef = firestore.collection('products').doc('product1');
-
-docRef.set({
-  name: 'New Product',
-  price: 20
-}, { merge: true });
+a) 
+```json
+{
+  "book": {
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "price": 9.99
+  }
+}
 ```
 
-a) The changes will be discarded.  
-b) The changes will overwrite the existing document.  
-c) The changes will merge with the existing document.  
-d) An error will occur.  
-**Answer:** c) The changes will merge with the existing document.
+b) 
+```json
+{
+  "title": "1984",
+  "author": "George Orwell",
+  "genre": "Dystopian",
+  "price": 9.99
+}
+```
+
+c) 
+```json
+{
+  "books": [
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "price": 9.99
+    }
+  ]
+}
+```
+
+d) 
+```json
+{
+  "collection": "books",
+  "document": {
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "price": 9.99
+  }
+}
+```
+
+**Answer:** b) 
+```json
+{
+  "title": "1984",
+  "author": "George Orwell",
+  "genre": "Dystopian",
+  "price": 9.99
+}
+```
+
+---
+
+### Question 2:
+In a social media application using Cloud Firestore, if you want to query all comments made by a specific user across all posts, which of the following approaches would be most effective?
+
+a) Query the 'comments' sub-collection directly.
+
+b) Use a separate collection for user comments to facilitate the query.
+
+c) Query the 'posts' collection and filter comments in the application code.
+
+d) Firestore automatically supports querying across sub-collections.
+
+**Answer:** b) Use a separate collection for user comments to facilitate the query.
+
+---
+
+### Question 3:
+Which of the following statements about Cloud Firestore is true?
+
+a) Firestore allows you to perform complex joins across multiple collections.
+
+b) Firestore supports real-time synchronization of data across clients.
+
+c) Firestore requires you to define a fixed schema for your data.
+
+d) Firestore does not support offline data access.
+
+**Answer:** b) Firestore supports real-time synchronization of data across clients.
+
+---
+
+### Question 4:
+Given the following code snippet, what will be the result of the query?
+
+```javascript
+const db = firebase.firestore();
+db.collection("books").where("price", "<", 10).get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+  });
+});
+```
+
+a) It will log all books with a price greater than or equal to 10.
+
+b) It will log all books with a price less than 10.
+
+c) It will log an error because Firestore does not support querying by price.
+
+d) It will log all books regardless of their price.
+
+**Answer:** b) It will log all books with a price less than 10.
+
+---
 
 ### Question 5:
-Which of the following is a benefit of using Cloud Firestore for an e-commerce application?
-a) It requires a fixed schema.  
-b) It supports complex queries and real-time updates.  
-c) It is only accessible from mobile devices.  
-d) It does not support offline capabilities.  
-**Answer:** b) It supports complex queries and real-time updates.
+In the context of Cloud Firestore, what does denormalization mean?
+
+a) Storing data in a highly structured format.
+
+b) Storing duplicate data to optimize read performance.
+
+c) Automatically removing duplicate entries from the database.
+
+d) Creating relationships between different collections.
+
+**Answer:** b) Storing duplicate data to optimize read performance.
+
+---
+
+# Data Structure - Collections and Documents
+
+## Questions
+
+### Multiple Choice Questions on Data Structure - Collections and Documents
+
+1. **Question:** In a NoSQL database like MongoDB, what does a collection represent?
+   a) A single record  
+   b) A group of related documents  
+   c) A type of data structure  
+   d) A query language  
+   **Answer:** b) A group of related documents
+
+2. **Question:** Given the following document in a 'Users' collection:  
+   ```json
+   { 'name': 'Alice', 'age': 30, 'email': 'alice@example.com' }
+   ```
+   What type of data does this document primarily represent?
+   a) A user profile  
+   b) A product listing  
+   c) A transaction record  
+   d) A system configuration  
+   **Answer:** a) A user profile
+
+3. **Question:** Which of the following statements is true about documents in a NoSQL collection?
+   a) All documents must have the same structure  
+   b) Documents can have varying fields and data types  
+   c) Documents are always stored in a fixed schema  
+   d) Documents cannot contain nested objects  
+   **Answer:** b) Documents can have varying fields and data types
+
+4. **Question:** Consider the following document in a 'Products' collection:  
+   ```json
+   { 'productName': 'E-Book', 'price': 9.99, 'fileFormat': 'PDF', 'downloadLink': 'http://example.com/download' }
+   ```
+   What type of product does this document represent?
+   a) A physical product  
+   b) A digital product  
+   c) A service  
+   d) A subscription  
+   **Answer:** b) A digital product
+
+5. **Question:** In the context of NoSQL databases, what is a key advantage of using a document-based structure?
+   a) It requires a predefined schema  
+   b) It allows for complex joins between tables  
+   c) It provides flexibility in data representation  
+   d) It enforces data normalization  
+   **Answer:** c) It provides flexibility in data representation
+
+6. **Question:** If you wanted to add an address field to the following document in the 'Users' collection:  
+   ```json
+   { 'name': 'Bob', 'age': 25, 'email': 'bob@example.com' }
+   ```
+   Which of the following would be a valid modification?
+   a) Add 'address': '123 Main St'  
+   b) Add 'address': { 'street': '123 Main St', 'city': 'Anytown' }  
+   c) Add 'address': [ '123 Main St', 'Anytown' ]  
+   d) Add 'address': null  
+   **Answer:** b) Add 'address': { 'street': '123 Main St', 'city': 'Anytown' }
+
+7. **Question:** In a NoSQL database, what is the primary purpose of a collection?
+   a) To store user credentials  
+   b) To group similar documents for efficient retrieval  
+   c) To enforce data integrity  
+   d) To manage transactions  
+   **Answer:** b) To group similar documents for efficient retrieval
+
+8. **Question:** Which of the following best describes the 'Products' collection example provided?
+   a) It contains only physical products  
+   b) It demonstrates the use of a single document structure  
+   c) It showcases the ability to store different types of products in one collection  
+   d) It requires all products to have the same attributes  
+   **Answer:** c) It showcases the ability to store different types of products in one collection
+
+---
+
+# CRUD Operations - Create Data
+
+## Questions
+
+### Questions on CRUD Operations - Create Data
+
+**Question 1:** What method is used to create a new document in a Firestore collection?  
+a) add()  
+b) create()  
+c) set()  
+d) insert()  
+**Answer:** c) set()
+
+---
+
+**Question 2:** In the provided code snippet, what is the purpose of `db.collection('users').doc();`?  
+a) It retrieves a document from the 'users' collection.  
+b) It creates a reference to a new document with a generated ID.  
+c) It deletes a document from the 'users' collection.  
+d) It updates an existing document in the 'users' collection.  
+**Answer:** b) It creates a reference to a new document with a generated ID.
+
+---
+
+**Question 3:** What will happen if the `set()` method is called with an object that contains the same document ID as an existing document?  
+a) It will create a new document with a different ID.  
+b) It will overwrite the existing document with the new data.  
+c) It will throw an error.  
+d) It will append the new data to the existing document.  
+**Answer:** b) It will overwrite the existing document with the new data.
+
+---
+
+**Question 4:** In the tricky example, what is the significance of `const productCode = 'PROD123';`?  
+a) It is a randomly generated ID for the product.  
+b) It is the ID used to create a new product document instead of a generated ID.  
+c) It is the name of the product.  
+d) It is the price of the product.  
+**Answer:** b) It is the ID used to create a new product document instead of a generated ID.
+
+---
+
+**Question 5:** What will be logged to the console if the product document is created successfully in the tricky example?  
+a) 'Error creating product document: '  
+b) 'Product document created successfully with specific ID!'  
+c) 'User document created successfully!'  
+d) 'Product document creation failed.'  
+**Answer:** b) 'Product document created successfully with specific ID!'
+
+---
+
+**Question 6:** If an error occurs during the document creation process, which part of the code handles the error?  
+a) The `then()` method  
+b) The `catch()` method  
+c) The `set()` method  
+d) The `doc()` method  
+**Answer:** b) The `catch()` method
+
+---
+
+**Question 7:** Which of the following statements is true regarding Firestore document IDs?  
+a) Document IDs must always be generated by Firestore.  
+b) Document IDs can be either generated by Firestore or specified by the user.  
+c) Document IDs cannot be changed once created.  
+d) Document IDs are always numeric.  
+**Answer:** b) Document IDs can be either generated by Firestore or specified by the user.
+
+---
+
+# Use cases
+
+## Questions
+
+### Question 1:
+What is a typical use case for Cloud Firestore in a social media application?
+a) Storing user passwords securely  
+b) Managing user profiles, posts, comments, and likes in real-time  
+c) Hosting images and videos  
+d) Sending push notifications to users  
+
+**Answer:** b) Managing user profiles, posts, comments, and likes in real-time
+
+---
+
+### Question 2:
+In an e-commerce platform using Cloud Firestore, what is a critical consideration when implementing flash sales?
+a) Ensuring all users can see the same product images  
+b) Handling concurrent updates to inventory levels  
+c) Allowing users to leave reviews after purchase  
+d) Providing a discount code for all users  
+
+**Answer:** b) Handling concurrent updates to inventory levels
+
+---
+
+### Question 3:
+Which of the following best describes a challenge when using Cloud Firestore for managing inventory during flash sales?
+a) Users being unable to create accounts  
+b) Ensuring that users do not oversell items due to rapid inventory changes  
+c) Difficulty in retrieving user data  
+d) Slow loading times for product images  
+
+**Answer:** b) Ensuring that users do not oversell items due to rapid inventory changes
+
+---
+
+### Question 4:
+Given the following code snippet, what will happen if two users try to purchase the last item in stock simultaneously?
+
+```javascript
+const db = firebase.firestore();
+const itemRef = db.collection('inventory').doc('item123');
+
+db.runTransaction(async (transaction) => {
+    const doc = await transaction.get(itemRef);
+    if (!doc.exists) {
+        throw "Document does not exist!";
+    }
+    const newStock = doc.data().stock - 1;
+    if (newStock < 0) {
+        throw "Not enough stock!";
+    }
+    transaction.update(itemRef, { stock: newStock });
+});
+```
+
+a) One user will succeed, and the other will fail due to insufficient stock.  
+b) Both users will succeed, and the stock will go negative.  
+c) Both users will fail due to a transaction error.  
+d) The transaction will automatically resolve to allow both purchases.  
+
+**Answer:** a) One user will succeed, and the other will fail due to insufficient stock.
+
+---
+
+### Question 5:
+What feature of Cloud Firestore allows users to see updates from their friends instantly in a social media application?
+a) Batch writes  
+b) Real-time listeners  
+c) Offline persistence  
+d) Data modeling  
+
+**Answer:** b) Real-time listeners
+
+---
+
+# Cloud Firestore
+
+## Questions
+
+### Question 1:
+In a mobile application using Cloud Firestore, which of the following fields would you typically find in a user document?
+
+a) username  
+b) post content  
+c) timestamp  
+d) chat room ID  
+
+**Answer:** a) username
+
+---
+
+### Question 2:
+When a user creates a new post in a Cloud Firestore-based application, where is the new post stored?
+
+a) In the user's document  
+b) In the 'posts' collection  
+c) In the 'users' collection  
+d) In the 'comments' sub-collection  
+
+**Answer:** b) In the 'posts' collection
+
+---
+
+### Question 3:
+In a real-time chat application using Cloud Firestore, how are messages typically organized?
+
+a) Each message is a document in the 'messages' collection  
+b) Each message is a sub-collection within the room document  
+c) Each message is stored in the user's document  
+d) Each message is stored in a global 'chat' collection  
+
+**Answer:** b) Each message is a sub-collection within the room document
+
+---
+
+### Question 4:
+What is a critical consideration when implementing a feature to delete a message in a Firestore chat application?
+
+a) Ensuring the message is deleted from the user's document  
+b) Ensuring that all users are notified of the change  
+c) Ensuring that the message is archived  
+d) Ensuring that the message is logged  
+
+**Answer:** b) Ensuring that all users are notified of the change
+
+---
+
+### Question 5:
+Given the following code snippet, what does the `onSnapshot` method do in the context of Firestore?
+
+```javascript
+const unsubscribe = firestore.collection('posts').onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(change => {
+        if (change.type === 'added') {
+            console.log('New post: ', change.doc.data());
+        }
+    });
+});
+```
+
+a) It retrieves all posts from the 'posts' collection once.  
+b) It listens for real-time updates to the 'posts' collection.  
+c) It deletes a post from the 'posts' collection.  
+d) It updates a post in the 'posts' collection.  
+
+**Answer:** b) It listens for real-time updates to the 'posts' collection.
+
+---
+
+### Question 6:
+In a Firestore-based application, what happens if a user deletes a message while others are viewing the chat room?
+
+a) The message is deleted only for the user who deleted it.  
+b) The message is deleted for all users, and they are notified of the change.  
+c) The message remains visible until the app is refreshed.  
+d) The message is archived instead of deleted.  
+
+**Answer:** b) The message is deleted for all users, and they are notified of the change.
 
 ---
 
@@ -731,897 +663,7 @@ d) It does not support offline capabilities.
 
 ### Questions on CRUD Operations - Read Data
 
-**Question 1:** What is the primary purpose of Firebase Authentication?  
-a) To store user data  
-b) To manage user sign-in methods  
-c) To create mobile applications  
-d) To send notifications  
-**Answer:** b) To manage user sign-in methods
-
----
-
-**Question 2:** Which of the following is NOT a sign-in method provided by Firebase Authentication?  
-a) Email/Password  
-b) Phone Number  
-c) Social Media Logins  
-d) Biometric Authentication  
-**Answer:** d) Biometric Authentication
-
----
-
-**Question 3:** In the context of Firebase Authentication, which of the following code snippets correctly initializes Firebase?  
-```javascript
-firebase.initializeApp({
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-});
-```
-a) Correct  
-b) Incorrect  
-**Answer:** a) Correct
-
----
-
-**Question 4:** What is a potential challenge when implementing multi-factor authentication (MFA) with Firebase Authentication?  
-a) Ensuring the user can only sign in with one method  
-b) Integrating the second factor securely while maintaining user experience  
-c) Allowing users to reset their passwords  
-d) Providing a single sign-on experience  
-**Answer:** b) Integrating the second factor securely while maintaining user experience
-
----
-
-**Question 5:** Which of the following Firebase Authentication methods allows users to sign up using their Google account?  
-a) Email/Password  
-b) Phone Number  
-c) Google Sign-In  
-d) Anonymous Sign-In  
-**Answer:** c) Google Sign-In
-
----
-
-**Question 6:** When implementing MFA, which of the following is a common second factor used?  
-a) Username  
-b) Password  
-c) SMS Verification Code  
-d) Security Question  
-**Answer:** c) SMS Verification Code
-
----
-
-**Question 7:** In Firebase Authentication, which method would you use to sign in a user with their email and password?  
-a) firebase.auth().signInWithEmail()  
-b) firebase.auth().signInWithEmailAndPassword(email, password)  
-c) firebase.auth().loginWithEmail(email, password)  
-d) firebase.auth().authenticateUser(email, password)  
-**Answer:** b) firebase.auth().signInWithEmailAndPassword(email, password)
-
----
-
-**Question 8:** What is a key benefit of using Firebase Authentication for user management in mobile apps?  
-a) It requires extensive backend development  
-b) It simplifies user management with various sign-in options  
-c) It eliminates the need for user data storage  
-d) It provides a complex user interface  
-**Answer:** b) It simplifies user management with various sign-in options
-
----
-
-# CRUD Operations - Update Data
-
-## Questions
-
-### Question 1:
-What does CRUD stand for in the context of database operations?
-a) Create, Read, Update, Delete  
-b) Create, Retrieve, Update, Destroy  
-c) Create, Read, Upload, Download  
-d) Create, Read, Use, Delete  
-**Answer:** a) Create, Read, Update, Delete
-
-### Question 2:
-In a photo-sharing app using Cloud Storage, which operation would be used to change the metadata of an uploaded image?
-a) Create  
-b) Read  
-c) Update  
-d) Delete  
-**Answer:** c) Update
-
-### Question 3:
-Which of the following is a key consideration when managing file permissions in Cloud Storage?
-a) Ensuring all users can access all files  
-b) Setting up security rules to restrict access  
-c) Allowing anonymous uploads  
-d) Automatically deleting old files  
-**Answer:** b) Setting up security rules to restrict access
-
-### Question 4:
-Given the following code snippet, what operation is being performed?
-
-```javascript
-const storageRef = firebase.storage().ref();
-const fileRef = storageRef.child('images/photo.jpg');
-fileRef.delete().then(() => {
-  console.log('File deleted successfully');
-}).catch((error) => {
-  console.error('Error deleting file:', error);
-});
-```
-a) Create  
-b) Read  
-c) Update  
-d) Delete  
-**Answer:** d) Delete
-
-### Question 5:
-In a Cloud Storage scenario, which of the following would be an example of a "Read" operation?
-a) Uploading a new image  
-b) Changing the permissions of an existing file  
-c) Retrieving a user's uploaded photo  
-d) Deleting a video file  
-**Answer:** c) Retrieving a user's uploaded photo
-
----
-
-# Cloud Firestore CRUD Operations
-
-## Questions
-
-### Questions on Cloud Firestore CRUD Operations
-
-**Question 1:** What does CRUD stand for in the context of database operations?  
-a) Create, Read, Update, Delete  
-b) Create, Retrieve, Update, Delete  
-c) Create, Read, Upload, Delete  
-d) Create, Read, Update, Download  
-**Answer:** a) Create, Read, Update, Delete
-
----
-
-**Question 2:** Which of the following is a method to add a document to a Firestore collection?  
-a) `db.collection("users").add(data)`  
-b) `db.collection("users").insert(data)`  
-c) `db.collection("users").create(data)`  
-d) `db.collection("users").push(data)`  
-**Answer:** a) `db.collection("users").add(data)`
-
----
-
-**Question 3:** In Firestore, which method would you use to retrieve all documents from a collection named "products"?  
-a) `db.collection("products").getAll()`  
-b) `db.collection("products").fetch()`  
-c) `db.collection("products").get()`  
-d) `db.collection("products").retrieve()`  
-**Answer:** c) `db.collection("products").get()`
-
----
-
-**Question 4:** What is the correct way to update a document in Firestore?  
-```javascript
-db.collection("users").doc("user_id").____(data);
-```
-a) `modify`  
-b) `update`  
-c) `change`  
-d) `edit`  
-**Answer:** b) `update`
-
----
-
-**Question 5:** When deleting a document in Firestore, which method is used?  
-```javascript
-db.collection("users").doc("user_id").____();
-```
-a) `remove`  
-b) `delete`  
-c) `destroy`  
-d) `clear`  
-**Answer:** b) `delete`
-
----
-
-**Question 6:** Which of the following statements is true regarding Firestore's real-time capabilities?  
-a) Firestore does not support real-time updates.  
-b) Firestore allows you to listen to changes in a document or collection in real-time.  
-c) Firestore requires manual polling to check for updates.  
-d) Firestore can only send updates to web applications.  
-**Answer:** b) Firestore allows you to listen to changes in a document or collection in real-time.
-
----
-
-**Question 7:** In the context of Firebase Cloud Messaging (FCM), what is the primary purpose of FCM?  
-a) To store user data  
-b) To send notifications to users across platforms  
-c) To manage user authentication  
-d) To host web applications  
-**Answer:** b) To send notifications to users across platforms
-
----
-
-**Question 8:** When handling notifications in FCM, which of the following is a best practice?  
-a) Sending notifications without any formatting  
-b) Ignoring background notifications  
-c) Ensuring notifications are formatted correctly for different platforms  
-d) Sending the same notification to all users without targeting  
-**Answer:** c) Ensuring notifications are formatted correctly for different platforms
-
----
-
-**Question 9:** Which of the following is NOT a valid way to send a notification using FCM?  
-a) Using the FCM REST API  
-b) Using Firebase Admin SDK  
-c) Using Firebase Cloud Functions  
-d) Using a direct database query  
-**Answer:** d) Using a direct database query
-
----
-
-**Question 10:** In FCM, what is the purpose of the "notification" payload?  
-a) To store user preferences  
-b) To display a message to the user  
-c) To manage user sessions  
-d) To log user activity  
-**Answer:** b) To display a message to the user
-
----
-
-# Delete Data in Cloud Firestore
-
-## Questions
-
-### Multiple Choice Questions on Deleting Data in Cloud Firestore
-
-**Question 1:** What is the correct method to delete a document in Cloud Firestore using JavaScript?  
-a) `firestore.collection('users').remove('userId')`  
-b) `firestore.collection('users').delete('userId')`  
-c) `firestore.collection('users').doc('userId').delete()`  
-d) `firestore.collection('users').removeDocument('userId')`  
-**Answer:** c) `firestore.collection('users').doc('userId').delete()`
-
----
-
-**Question 2:** Which of the following statements is true regarding deleting data in Cloud Firestore?  
-a) Deleting a document also deletes all its subcollections.  
-b) Deleted data can be recovered easily.  
-c) You can delete multiple documents in a single operation using a batch.  
-d) Deleting data does not affect the billing.  
-**Answer:** c) You can delete multiple documents in a single operation using a batch.
-
----
-
-**Question 3:** If you want to delete all documents in a collection in Cloud Firestore, which approach is recommended?  
-a) Use a loop to delete each document individually.  
-b) Use the `delete()` method on the collection directly.  
-c) Use a batch operation to delete all documents at once.  
-d) There is no way to delete all documents in a collection at once.  
-**Answer:** c) Use a batch operation to delete all documents at once.
-
----
-
-**Question 4:** What will happen if you attempt to delete a document that does not exist in Cloud Firestore?  
-a) An error will be thrown.  
-b) The operation will succeed silently without any effect.  
-c) The document will be created instead.  
-d) The operation will fail and rollback any previous changes.  
-**Answer:** b) The operation will succeed silently without any effect.
-
----
-
-**Question 5:** Consider the following code snippet. What will it do?
-
-```javascript
-const batch = firestore.batch();
-const docRef1 = firestore.collection('users').doc('user1');
-const docRef2 = firestore.collection('users').doc('user2');
-
-batch.delete(docRef1);
-batch.delete(docRef2);
-await batch.commit();
-```
-
-a) It will delete both 'user1' and 'user2' documents.  
-b) It will delete only 'user1' document.  
-c) It will throw an error if either document does not exist.  
-d) It will delete the entire 'users' collection.  
-**Answer:** a) It will delete both 'user1' and 'user2' documents.
-
----
-
-# Realtime Update in Cloud Firestore
-
-## Questions
-
-### Questions on Realtime Update in Cloud Firestore
-
-**Question 1:** What feature of Cloud Firestore allows developers to receive updates in real-time when data changes?  
-a) Firestore Sync  
-b) Firestore Listeners  
-c) Firestore Caching  
-d) Firestore Transactions  
-**Answer:** b) Firestore Listeners
-
----
-
-**Question 2:** Which of the following code snippets correctly sets up a listener for real-time updates on a Firestore collection named "users"?  
-a) 
-```javascript
-firebase.firestore().collection("users").onSnapshot(snapshot => {
-    snapshot.forEach(doc => {
-        console.log(doc.data());
-    });
-});
-```  
-b) 
-```javascript
-firebase.firestore().collection("users").get().then(snapshot => {
-    snapshot.forEach(doc => {
-        console.log(doc.data());
-    });
-});
-```  
-c) 
-```javascript
-firebase.firestore().collection("users").addListener(snapshot => {
-    console.log(snapshot.data());
-});
-```  
-d) 
-```javascript
-firebase.firestore().collection("users").listen(snapshot => {
-    console.log(snapshot.data());
-});
-```  
-**Answer:** a) 
-```javascript
-firebase.firestore().collection("users").onSnapshot(snapshot => {
-    snapshot.forEach(doc => {
-        console.log(doc.data());
-    });
-});
-```
-
----
-
-**Question 3:** What is the primary benefit of using real-time updates in Cloud Firestore?  
-a) It reduces the amount of data stored in the database.  
-b) It allows applications to reflect changes in data instantly without needing to refresh.  
-c) It improves the security of the database.  
-d) It simplifies the database schema.  
-**Answer:** b) It allows applications to reflect changes in data instantly without needing to refresh.
-
----
-
-**Question 4:** When using Firestore listeners, what happens if the listener is no longer needed?  
-a) It automatically stops listening after a certain time.  
-b) It continues to listen and consume resources.  
-c) It must be manually unsubscribed to stop listening.  
-d) It will throw an error if not removed.  
-**Answer:** c) It must be manually unsubscribed to stop listening.
-
----
-
-**Question 5:** In the context of Firebase Hosting, what is a common challenge developers face when setting up redirects?  
-a) Ensuring the hosting plan is sufficient.  
-b) Configuring rules correctly to avoid broken links.  
-c) Managing user authentication.  
-d) Deploying the application to the correct environment.  
-**Answer:** b) Configuring rules correctly to avoid broken links.
-
----
-
-# Document Change Types
-
-## Questions
-
-### Questions on Document Change Types
-
-**Question 1:** In a Cloud Firestore database for a bookstore, which of the following fields would NOT typically be included in a book document?  
-a) title  
-b) author  
-c) publication date  
-d) userId  
-
-**Answer:** d) userId
-
----
-
-**Question 2:** In a social media application, if you want to retrieve all comments made by a specific user across multiple posts, which of the following queries would be most appropriate?  
-a) Query the 'comments' sub-collection of each post individually.  
-b) Use a single query on the 'posts' collection to find all comments.  
-c) Aggregate results from all 'comments' sub-collections after querying each post.  
-d) Query the 'users' collection to find comments by userId.  
-
-**Answer:** c) Aggregate results from all 'comments' sub-collections after querying each post.
-
----
-
-**Question 3:** Given the following code snippet, what does the `get()` method do in this context?
-
-```javascript
-const booksRef = db.collection('books');
-booksRef.get().then((snapshot) => {
-    snapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
-    });
-});
-```
-
-a) It updates all documents in the 'books' collection.  
-b) It retrieves all documents in the 'books' collection.  
-c) It deletes all documents in the 'books' collection.  
-d) It creates a new document in the 'books' collection.  
-
-**Answer:** b) It retrieves all documents in the 'books' collection.
-
----
-
-**Question 4:** In the context of Cloud Firestore, what is a sub-collection?  
-a) A collection that contains only documents with a specific field.  
-b) A collection that is nested within a document.  
-c) A collection that can only be accessed by admin users.  
-d) A collection that stores metadata about other collections.  
-
-**Answer:** b) A collection that is nested within a document.
-
----
-
-**Question 5:** If you want to find all books priced under $20 in a Firestore query, which of the following code snippets would be correct?
-
-```javascript
-const booksRef = db.collection('books');
-const query = booksRef.where('price', '<', 20);
-```
-
-a) This code snippet is incorrect; it should use `==` instead of `<`.  
-b) This code snippet is correct and will retrieve all books under $20.  
-c) This code snippet will only retrieve books priced exactly at $20.  
-d) This code snippet will throw an error because of the comparison operator.  
-
-**Answer:** b) This code snippet is correct and will retrieve all books under $20.
-
----
-
-# Cloud Firestore
-
-## Questions
-
-### Question 1:
-What is the primary characteristic of documents in a NoSQL database like Cloud Firestore?
-
-a) All documents must have the same structure  
-b) Documents are stored in tables  
-c) Each document can have different fields and structures  
-d) Documents are limited to text data only  
-
-**Answer:** c) Each document can have different fields and structures
-
----
-
-### Question 2:
-Given the following document structure in a Firestore collection named 'Users':
-
-```json
-{ 
-  'name': 'Charlie', 
-  'age': 28, 
-  'email': 'charlie@example.com', 
-  'preferences': { 'newsletter': true, 'notifications': false } 
-}
-```
-
-What type of data structure is used for the 'preferences' field?
-
-a) Array  
-b) String  
-c) Object  
-d) Number  
-
-**Answer:** c) Object
-
----
-
-### Question 3:
-In a Firestore collection named 'Products', which of the following documents is valid?
-
-a) `{ 'productName': 'Smartphone', 'price': 699.99 }`  
-b) `{ 'productName': 'Smartphone', 'price': '699.99' }`  
-c) `{ 'productName': 'Smartphone', 'price': 699.99, 'specs': [ '5G', '128GB' ] }`  
-d) All of the above  
-
-**Answer:** d) All of the above
-
----
-
-### Question 4:
-If you want to query all users who are older than 25 in a Firestore collection named 'Users', which of the following queries is correct?
-
-a) `db.collection('Users').where('age', '>', 25)`  
-b) `db.collection('Users').filter('age', '>', 25)`  
-c) `db.collection('Users').find('age', '>', 25)`  
-d) `db.collection('Users').select('age', '>', 25)`  
-
-**Answer:** a) `db.collection('Users').where('age', '>', 25)`
-
----
-
-### Question 5:
-Consider the following document in a Firestore collection named 'Products':
-
-```json
-{ 
-  'productName': 'E-Book', 
-  'price': 9.99, 
-  'fileSizeMB': 5, 
-  'format': 'PDF' 
-}
-```
-
-Which of the following fields is an example of a numeric data type?
-
-a) 'productName'  
-b) 'price'  
-c) 'format'  
-d) 'fileSizeMB'  
-
-**Answer:** b) 'price' and d) 'fileSizeMB' (Note: This question can be tricky as it has two correct answers; you may choose to specify only one correct answer if desired.)
-
----
-
-# Security Rules
-
-## Questions
-
-### Question 1:
-What is the purpose of the `doc()` method in the following code snippet?
-
-```javascript
-const userRef = db.collection('users').doc();
-```
-
-a) To create a new collection  
-b) To generate a new document reference with a unique ID  
-c) To retrieve an existing document  
-d) To delete a document  
-
-**Answer:** b) To generate a new document reference with a unique ID
-
----
-
-### Question 2:
-In the provided code snippet, what will happen if the `set()` method is called on an existing document reference?
-
-```javascript
-userRef.set({
-  name: 'John Doe',
-  email: 'john.doe@example.com',
-  age: 30
-});
-```
-
-a) It will throw an error  
-b) It will overwrite the existing document  
-c) It will create a new document with a different ID  
-d) It will append the new data to the existing document  
-
-**Answer:** b) It will overwrite the existing document
-
----
-
-### Question 3:
-What does the following code check before creating a new product document?
-
-```javascript
-productRef.get().then((doc) => {
-  if (doc.exists) {
-    console.log('Product ID already exists. Choose a different ID.');
-  } else {
-    // Create a new product document
-  }
-});
-```
-
-a) If the product ID is valid  
-b) If the product ID is unique  
-c) If the product document is empty  
-d) If the user is authenticated  
-
-**Answer:** b) If the product ID is unique
-
----
-
-### Question 4:
-What will the output be if the product ID 'product123' already exists in the 'products' collection?
-
-```javascript
-if (doc.exists) {
-  console.log('Product ID already exists. Choose a different ID.');
-}
-```
-
-a) 'Product document created successfully!'  
-b) 'Error creating product document: '  
-c) 'Product ID already exists. Choose a different ID.'  
-d) No output  
-
-**Answer:** c) 'Product ID already exists. Choose a different ID.'
-
----
-
-### Question 5:
-In the context of Firestore, what does the `catch()` method do in the following code snippet?
-
-```javascript
-productRef.set({
-  name: 'New Product',
-  price: 29.99,
-  stock: 100
-}).catch((error) => {
-  console.error('Error creating product document: ', error);
-});
-```
-
-a) It handles successful document creation  
-b) It logs an error if document creation fails  
-c) It prevents the document from being created  
-d) It retries the document creation  
-
-**Answer:** b) It logs an error if document creation fails
-
----
-
-# Firebase Authentication
-
-## Questions
-
-### Questions on Firebase Authentication and Firestore
-
-**Question 1:** What is the primary purpose of Firebase Authentication in a social media application?  
-a) To store user posts  
-b) To manage user profiles and sign-in processes  
-c) To handle real-time updates  
-d) To manage inventory levels  
-**Answer:** b) To manage user profiles and sign-in processes
-
----
-
-**Question 2:** In a Firestore database, which of the following data structures is used to store user profiles?  
-a) Arrays  
-b) Documents  
-c) Strings  
-d) Functions  
-**Answer:** b) Documents
-
----
-
-**Question 3:** In the context of an e-commerce platform using Firestore, what is a potential issue when multiple users attempt to purchase the same item simultaneously?  
-a) Users will not be able to log in  
-b) Firestore will automatically refund users  
-c) Concurrent writes may lead to overselling  
-d) User profiles will be deleted  
-**Answer:** c) Concurrent writes may lead to overselling
-
----
-
-**Question 4:** Given the following code snippet, what does the `onSnapshot` method do in Firestore?  
-```javascript
-const unsubscribe = firestore.collection('posts').onSnapshot(snapshot => {
-    snapshot.docChanges().forEach(change => {
-        if (change.type === 'added') {
-            console.log('New post: ', change.doc.data());
-        }
-    });
-});
-```  
-a) It retrieves a single document from the collection  
-b) It listens for real-time updates to the collection  
-c) It deletes a document from the collection  
-d) It updates a document in the collection  
-**Answer:** b) It listens for real-time updates to the collection
-
----
-
-**Question 5:** What is a common method to ensure that Firestore handles concurrent writes correctly in an e-commerce application?  
-a) Use a single user account for all transactions  
-b) Implement transactions or batched writes  
-c) Disable real-time updates  
-d) Store all data in local storage  
-**Answer:** b) Implement transactions or batched writes
-
----
-
-**Question 6:** In a social media application, which Firebase feature would you use to allow users to sign in with their Google accounts?  
-a) Firestore  
-b) Firebase Hosting  
-c) Firebase Authentication  
-d) Firebase Cloud Functions  
-**Answer:** c) Firebase Authentication
-
----
-
-**Question 7:** When using Firestore to manage user carts in an e-commerce platform, which of the following is a best practice to avoid data inconsistency?  
-a) Allow users to edit their carts without restrictions  
-b) Use Firestore's security rules to validate cart updates  
-c) Store cart data in a separate database  
-d) Disable real-time updates for cart data  
-**Answer:** b) Use Firestore's security rules to validate cart updates
-
----
-
-**Question 8:** If you want to ensure that a user's profile is updated in real-time across all devices, which Firestore feature should you utilize?  
-a) Firestore Security Rules  
-b) Firestore Transactions  
-c) Firestore Real-time Listeners  
-d) Firestore Batch Writes  
-**Answer:** c) Firestore Real-time Listeners
-
----
-
-# User Registration and Login
-
-## Questions
-
-### Questions on User Registration and Login in a CMS
-
-1. **Question:** In a content management system (CMS), which of the following is NOT typically a part of user registration?  
-   a) Username  
-   b) Password  
-   c) Article Title  
-   d) Email Address  
-   **Answer:** c) Article Title
-
-2. **Question:** When implementing user permissions in a CMS, which of the following roles is most likely to have the highest level of access?  
-   a) Editor  
-   b) Author  
-   c) Contributor  
-   d) Administrator  
-   **Answer:** d) Administrator
-
-3. **Question:** In Firestore, which of the following data structures is commonly used to store user permissions?  
-   a) Array  
-   b) Map  
-   c) String  
-   d) Number  
-   **Answer:** b) Map
-
-4. **Question:** Given the following code snippet, what will be the output if the user is successfully logged in?  
-   ```javascript
-   function loginUser(username, password) {
-       if (username === "admin" && password === "1234") {
-           return "Login successful!";
-       } else {
-           return "Login failed!";
-       }
-   }
-   console.log(loginUser("admin", "1234"));
-   ```  
-   a) Login failed!  
-   b) Login successful!  
-   c) Undefined  
-   d) Error  
-   **Answer:** b) Login successful!
-
-5. **Question:** In a CMS that allows scheduling posts, which of the following is a potential issue when managing scheduled posts?  
-   a) Users can edit posts that are scheduled for future publication.  
-   b) Posts are published immediately regardless of the schedule.  
-   c) Scheduled posts do not appear in the database.  
-   d) All of the above.  
-   **Answer:** d) All of the above.
-
-6. **Question:** Which Firestore feature would be most useful for real-time collaboration between authors and editors in a CMS?  
-   a) Offline support  
-   b) Real-time listeners  
-   c) Batch writes  
-   d) Data validation  
-   **Answer:** b) Real-time listeners
-
-7. **Question:** What is the primary purpose of using Firestore in a CMS for user registration and login?  
-   a) To store images  
-   b) To manage user sessions  
-   c) To store user data and permissions  
-   d) To create user interfaces  
-   **Answer:** c) To store user data and permissions
-
-8. **Question:** If a user tries to delete a scheduled post in a CMS, which of the following checks should be implemented to prevent this action?  
-   a) Check if the user is logged in  
-   b) Check if the post is scheduled for future publication  
-   c) Check if the user is an administrator  
-   d) All of the above  
-   **Answer:** b) Check if the post is scheduled for future publication
-
-9. **Question:** In a CMS, which of the following is a common method to ensure that user passwords are stored securely?  
-   a) Storing passwords in plain text  
-   b) Using a hashing algorithm  
-   c) Encrypting passwords with a simple cipher  
-   d) Storing passwords in a separate database  
-   **Answer:** b) Using a hashing algorithm
-
-10. **Question:** What is the main challenge of allowing users to edit posts that are already scheduled for future publication?  
-    a) Ensuring the post is saved correctly  
-    b) Preventing conflicts with the scheduled time  
-    c) Allowing users to see the post  
-    d) None of the above  
-    **Answer:** b) Preventing conflicts with the scheduled time
-
----
-
-# Social Media Integration
-
-## Questions
-
-### Question 1:
-What is a primary benefit of using Cloud Firestore for a social media application?
-a) It requires a complex server setup  
-b) It allows for easy retrieval and updates of user data and posts  
-c) It does not support real-time updates  
-d) It is limited to storing only text data  
-
-**Answer:** b) It allows for easy retrieval and updates of user data and posts
-
----
-
-### Question 2:
-In the context of the tricky example, what potential issue arises from storing the cart as an array within the user document?
-a) Increased storage costs  
-b) Difficulty in retrieving user profiles  
-c) Data loss or inconsistencies due to concurrent updates  
-d) Inability to store multiple user accounts  
-
-**Answer:** c) Data loss or inconsistencies due to concurrent updates
-
----
-
-### Question 3:
-Which of the following fields would NOT typically be found in a user document in a social media application using Cloud Firestore?
-a) Username  
-b) Profile picture URL  
-c) Post content  
-d) Array of post IDs  
-
-**Answer:** c) Post content
-
----
-
-### Question 4:
-Consider the following code snippet for adding a post in a social media application using Cloud Firestore:
-
-```javascript
-const addPost = async (userId, content) => {
-    const postRef = firestore.collection('posts').doc();
-    await postRef.set({
-        content: content,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        userId: userId
-    });
-};
-```
-What does the `firebase.firestore.FieldValue.serverTimestamp()` function do in this context?
-a) It sets the timestamp to the current local time of the user  
-b) It generates a unique ID for the post  
-c) It sets the timestamp to the server's current time  
-d) It retrieves the timestamp of the last post  
-
-**Answer:** c) It sets the timestamp to the server's current time
-
----
-
-### Question 5:
-When implementing transaction handling for cart updates in a Cloud Firestore application, what is the primary goal?
-a) To allow multiple users to edit the cart simultaneously  
-b) To ensure that cart updates are atomic and consistent  
-c) To reduce the number of reads and writes to the database  
-d) To simplify the data structure of the user document  
-
-**Answer:** b) To ensure that cart updates are atomic and consistent
-
----
-
-# Access Control
-
-## Questions
-
-### Question 1:
-What does the following code snippet do in a Cloud Firestore database?
-
+**Question 1:** What does the following code snippet do?
 ```javascript
 const db = firebase.firestore();
 
@@ -1631,81 +673,1038 @@ db.collection('users').get().then((querySnapshot) => {
     });
 });
 ```
-
-a) It retrieves all documents in the 'users' collection and logs their IDs and data.  
+a) It updates all documents in the 'users' collection.  
 b) It deletes all documents in the 'users' collection.  
-c) It updates all documents in the 'users' collection.  
-d) It retrieves only the first document in the 'users' collection.  
+c) It retrieves and logs all documents in the 'users' collection.  
+d) It creates a new document in the 'users' collection.  
+**Answer:** c) It retrieves and logs all documents in the 'users' collection.
 
-**Answer:** a) It retrieves all documents in the 'users' collection and logs their IDs and data.
+---
+
+**Question 2:** In the following code snippet, what is the purpose of the `where` clause?
+```javascript
+const emailToFind = 'example@example.com';
+
+db.collection('users').where('email', '==', emailToFind).get().then((querySnapshot) => {
+    if (querySnapshot.empty) {
+        console.log('No matching documents.');
+        return;
+    }
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
+});
+```
+a) It updates the email field of all documents in the 'users' collection.  
+b) It retrieves documents where the email field matches 'example@example.com'.  
+c) It deletes documents where the email field matches 'example@example.com'.  
+d) It creates a new document with the email 'example@example.com'.  
+**Answer:** b) It retrieves documents where the email field matches 'example@example.com'.
+
+---
+
+**Question 3:** What will happen if no documents match the query in the second code snippet?
+a) The program will crash.  
+b) It will log 'No matching documents.' to the console.  
+c) It will log all documents in the 'users' collection.  
+d) It will create a new document with the specified email.  
+**Answer:** b) It will log 'No matching documents.' to the console.
+
+---
+
+**Question 4:** Which of the following statements is true about the `querySnapshot` object in the second code snippet?
+a) It contains all documents in the 'users' collection regardless of the query.  
+b) It contains only the documents that match the specified query.  
+c) It can only be used to delete documents.  
+d) It automatically updates the documents in the 'users' collection.  
+**Answer:** b) It contains only the documents that match the specified query.
+
+---
+
+**Question 5:** If you wanted to retrieve users with a specific role in addition to filtering by email, which of the following code snippets would be correct?
+```javascript
+const emailToFind = 'example@example.com';
+const roleToFind = 'admin';
+
+db.collection('users').where('email', '==', emailToFind).where('role', '==', roleToFind).get().then((querySnapshot) => {
+    // Handle the results
+});
+```
+a) This code will retrieve users with the specified email and role.  
+b) This code will only retrieve users with the specified email.  
+c) This code will only retrieve users with the specified role.  
+d) This code will not work because you cannot chain multiple where clauses.  
+**Answer:** a) This code will retrieve users with the specified email and role.
+
+---
+
+# CRUD Operations - Update Data
+
+## Questions
+
+### Questions on CRUD Operations - Update Data
+
+**Question 1:** What method is used to update a specific field in a Firestore document?  
+a) set()  
+b) update()  
+c) merge()  
+d) save()  
+**Answer:** b) update()
+
+---
+
+**Question 2:** In the provided code snippet, what will happen if the document with ID 'user_id_123' does not exist when calling the `update()` method?  
+a) A new document will be created.  
+b) An error will be thrown.  
+c) The operation will succeed with no changes.  
+d) The email will be set to null.  
+**Answer:** b) An error will be thrown.
+
+---
+
+**Question 3:** What is the purpose of the `merge: true` option in the `set()` method?  
+a) It creates a new document regardless of existing data.  
+b) It updates the document and removes all other fields not included in the update.  
+c) It updates only the fields provided in the request, leaving other fields unchanged.  
+d) It prevents any updates to the document.  
+**Answer:** c) It updates only the fields provided in the request, leaving other fields unchanged.
+
+---
+
+**Question 4:** Given the following code snippet, which field will remain unchanged if it is not included in the `updatedData` object?  
+```javascript
+const updatedData = {
+  email: 'newemail@example.com',
+  // Assume 'age' is not provided in the request
+};
+```
+a) email  
+b) age  
+c) user_id  
+d) None, all fields will be updated.  
+**Answer:** b) age
+
+---
+
+**Question 5:** What will the console log if the email update is successful in the first code snippet?  
+a) 'Error updating user email: '  
+b) 'User email updated successfully!'  
+c) 'User profile updated successfully!'  
+d) 'User email not found.'  
+**Answer:** b) 'User email updated successfully!'
+
+---
+
+**Question 6:** If you want to update multiple fields in a Firestore document at once, which method would you use?  
+a) set()  
+b) update()  
+c) merge()  
+d) Both a and b  
+**Answer:** d) Both a and b
+
+---
+
+**Question 7:** In the context of Firestore, what does the `update()` method do if the specified field does not exist in the document?  
+a) It creates the field with the specified value.  
+b) It throws an error.  
+c) It ignores the update request.  
+d) It sets the field to null.  
+**Answer:** b) It throws an error.
+
+---
+
+# Cloud Firestore
+
+## Questions
+
+### Question 1:
+What is the primary purpose of Cloud Firestore in a mobile application for a social media platform?
+
+a) To manage user authentication  
+b) To store user profiles, posts, and comments  
+c) To handle payment processing  
+d) To send push notifications  
+
+**Answer:** b) To store user profiles, posts, and comments
 
 ---
 
 ### Question 2:
-In the following code snippet, what is the purpose of the `where` clause?
+In the context of Cloud Firestore, what happens when a user creates a new post in a social media application?
 
-```javascript
-const db = firebase.firestore();
+a) The post is saved locally and uploaded later  
+b) The post is saved in Firestore and all users see it in real-time  
+c) The post is sent to a server for approval before being displayed  
+d) The post is stored in a SQL database  
 
-const emailToFind = 'example@example.com';
-
-db.collection('users').where('email', '==', emailToFind).get().then((querySnapshot) => {
-    if (querySnapshot.empty) {
-        console.log('No matching documents.');
-        return;
-    }
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    });
-});
-```
-
-a) It retrieves all documents in the 'users' collection regardless of their email.  
-b) It filters the documents to only retrieve those where the 'email' field matches the specified email address.  
-c) It updates the email field of all documents in the 'users' collection.  
-d) It deletes documents from the 'users' collection based on the email address.  
-
-**Answer:** b) It filters the documents to only retrieve those where the 'email' field matches the specified email address.
+**Answer:** b) The post is saved in Firestore and all users see it in real-time
 
 ---
 
 ### Question 3:
-What will happen if the `emailToFind` variable does not match any documents in the 'users' collection in the following code snippet?
+What issue can arise in an e-commerce application using Cloud Firestore when two users add the same item to their cart simultaneously?
 
-```javascript
-const db = firebase.firestore();
+a) The application crashes  
+b) A race condition occurs, leading to incorrect inventory levels  
+c) The item is removed from the inventory  
+d) The application sends duplicate notifications  
 
-const emailToFind = 'example@example.com';
-
-db.collection('users').where('email', '==', emailToFind).get().then((querySnapshot) => {
-    if (querySnapshot.empty) {
-        console.log('No matching documents.');
-        return;
-    }
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    });
-});
-```
-
-a) The code will throw an error.  
-b) The code will log 'No matching documents.' to the console.  
-c) The code will log all documents in the 'users' collection.  
-d) The code will update the email field of all documents.  
-
-**Answer:** b) The code will log 'No matching documents.' to the console.
+**Answer:** b) A race condition occurs, leading to incorrect inventory levels
 
 ---
 
 ### Question 4:
-Which of the following statements is true regarding the efficiency of the second code snippet with the `where` clause?
+Which feature of Cloud Firestore can be used to ensure that inventory updates are atomic and consistent in the case of simultaneous updates?
 
-a) It is less efficient because it retrieves all documents and filters them afterward.  
-b) It is more efficient because it only retrieves documents that match the specified email address.  
-c) It is equally efficient as retrieving all documents.  
-d) It is inefficient because it requires a network call for each document.  
+a) Real-time listeners  
+b) Firestore rules  
+c) Transactions  
+d) Offline persistence  
 
-**Answer:** b) It is more efficient because it only retrieves documents that match the specified email address.
+**Answer:** c) Transactions
+
+---
+
+### Question 5:
+Given the following code snippet, what will happen when two users execute the `addToCart` function at the same time?
+
+```javascript
+function addToCart(itemId) {
+    const itemRef = firestore.collection('inventory').doc(itemId);
+    itemRef.update({
+        quantity: firebase.firestore.FieldValue.increment(-1)
+    });
+}
+```
+
+a) Both users will successfully decrement the inventory count  
+b) One user's update will overwrite the other's, leading to incorrect inventory  
+c) The application will throw an error  
+d) The inventory count will remain unchanged  
+
+**Answer:** b) One user's update will overwrite the other's, leading to incorrect inventory
+
+---
+
+### Question 6:
+What is a recommended practice to avoid race conditions when updating inventory levels in Cloud Firestore?
+
+a) Use local storage for inventory management  
+b) Implement Firestore transactions for inventory updates  
+c) Allow users to refresh the app to see updated inventory  
+d) Use a separate database for inventory management  
+
+**Answer:** b) Implement Firestore transactions for inventory updates
+
+---
+
+# CRUD Operations - Delete Data
+
+## Questions
+
+### Questions on CRUD Operations - Delete Data
+
+**Question 1:** What is the purpose of the `delete()` method in the following code snippet?
+```javascript
+const db = firebase.firestore();
+db.collection('users').doc('user123').delete()
+  .then(() => {
+    console.log('User successfully deleted!');
+  })
+  .catch((error) => {
+    console.error('Error removing user: ', error);
+  });
+```
+a) To update a user's information  
+b) To retrieve a user's data  
+c) To delete a user from the database  
+d) To create a new user  
+
+**Answer:** c) To delete a user from the database
+
+---
+
+**Question 2:** In the tricky example, what is the purpose of using `Promise.all(deletePromises)`?
+```javascript
+const db = firebase.firestore();
+const query = db.collection('orders').where('status', '==', 'canceled');
+
+query.get().then((querySnapshot) => {
+  const deletePromises = [];
+  querySnapshot.forEach((doc) => {
+    deletePromises.push(doc.ref.delete());
+  });
+  return Promise.all(deletePromises);
+}).then(() => {
+  console.log('All canceled orders successfully deleted!');
+}).catch((error) => {
+  console.error('Error deleting canceled orders: ', error);
+});
+```
+a) To ensure that all delete operations are completed before logging the success message  
+b) To create a new order  
+c) To update the status of the orders  
+d) To retrieve all canceled orders  
+
+**Answer:** a) To ensure that all delete operations are completed before logging the success message
+
+---
+
+**Question 3:** What will happen if an error occurs during the deletion of a user in the first code snippet?
+```javascript
+const db = firebase.firestore();
+db.collection('users').doc('user123').delete()
+  .then(() => {
+    console.log('User successfully deleted!');
+  })
+  .catch((error) => {
+    console.error('Error removing user: ', error);
+  });
+```
+a) The program will crash  
+b) The error will be logged to the console  
+c) The user will be deleted anyway  
+d) The deletion will be retried automatically  
+
+**Answer:** b) The error will be logged to the console
+
+---
+
+**Question 4:** In the context of the tricky example, what could potentially go wrong if you delete documents in a loop without handling asynchronous operations properly?
+a) The program will run faster  
+b) Some deletions may not complete before the next iteration starts, leading to unhandled promises  
+c) All deletions will succeed without any issues  
+d) The database will automatically handle the deletions  
+
+**Answer:** b) Some deletions may not complete before the next iteration starts, leading to unhandled promises
+
+---
+
+**Question 5:** Which of the following statements is true regarding the `where` clause in the tricky example?
+```javascript
+const query = db.collection('orders').where('status', '==', 'canceled');
+```
+a) It retrieves all orders regardless of their status  
+b) It filters the orders to only include those with a status of 'canceled'  
+c) It updates the status of all orders to 'canceled'  
+d) It deletes all orders from the database  
+
+**Answer:** b) It filters the orders to only include those with a status of 'canceled'
+
+---
+
+# Realtime Update
+
+## Questions
+
+### Question 1:
+What is the primary purpose of setting up a Firestore listener in a web application?
+
+a) To store data permanently  
+b) To monitor changes in a collection and update the UI in real-time  
+c) To delete data from the database  
+d) To create new collections  
+
+**Answer:** b) To monitor changes in a collection and update the UI in real-time
+
+---
+
+### Question 2:
+In the context of Firestore listeners, what does the callback function do when a new message is added to the 'messages' collection?
+
+a) It deletes the old messages  
+b) It updates the UI to display the new message  
+c) It sends an email notification  
+d) It logs the message to the console  
+
+**Answer:** b) It updates the UI to display the new message
+
+---
+
+### Question 3:
+Given the following code snippet, what will happen when a new order with the status 'pending' is added to the 'orders' collection?
+
+```javascript
+const ordersRef = firestore.collection('orders');
+ordersRef.where('status', '==', 'pending').onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(change => {
+        if (change.type === 'added') {
+            console.log('New pending order: ', change.doc.data());
+        }
+    });
+});
+```
+
+a) It will log all orders regardless of their status  
+b) It will log only the new pending orders  
+c) It will log all pending orders, including those that are completed  
+d) It will not log anything  
+
+**Answer:** b) It will log only the new pending orders
+
+---
+
+### Question 4:
+What is a potential challenge when using a Firestore listener to track orders that can change status?
+
+a) The listener can only track new orders, not updates  
+b) The listener may not capture changes to existing orders that change from 'pending' to 'completed'  
+c) The listener can only be set up for one collection at a time  
+d) The listener will automatically delete completed orders  
+
+**Answer:** b) The listener may not capture changes to existing orders that change from 'pending' to 'completed'
+
+---
+
+### Question 5:
+Which of the following statements is true regarding Firestore listeners and real-time updates?
+
+a) Listeners can only be set up for read operations  
+b) Listeners automatically refresh the entire database  
+c) Listeners provide real-time updates by listening for changes in the specified collection  
+d) Listeners require manual intervention to update the UI  
+
+**Answer:** c) Listeners provide real-time updates by listening for changes in the specified collection
+
+---
+
+# addSnapshotListener
+
+## Questions
+
+### Question 1:
+What is the purpose of the `addSnapshotListener` method in Firestore?
+
+a) To add a new document to a collection  
+b) To listen for real-time updates to a Firestore collection  
+c) To delete a document from a collection  
+d) To fetch a single document from a collection  
+
+**Answer:** b) To listen for real-time updates to a Firestore collection
+
+---
+
+### Question 2:
+In the provided code snippet, what will happen when a new user is added to the 'users' collection?
+
+```swift
+let db = Firestore.firestore()
+db.collection("users").addSnapshotListener { (querySnapshot, error) in
+    guard let snapshot = querySnapshot else {
+        print("Error fetching snapshots: \(error!)")
+        return
+    }
+    snapshot.documentChanges.forEach { diff in
+        if (diff.type == .added) {
+            print("New user: \(diff.document.data())")
+            // Update your UI here
+        }
+    }
+}
+```
+
+a) The application will crash  
+b) The new user's data will be printed to the console  
+c) The listener will stop working  
+d) The existing users will be deleted  
+
+**Answer:** b) The new user's data will be printed to the console
+
+---
+
+### Question 3:
+In the tricky example, what condition is checked before handling updates to orders?
+
+```swift
+let db = Firestore.firestore()
+db.collection("orders").addSnapshotListener { (querySnapshot, error) in
+    guard let snapshot = querySnapshot else {
+        print("Error fetching snapshots: \(error!)")
+        return
+    }
+    snapshot.documentChanges.forEach { diff in
+        if (diff.type == .modified) {
+            let orderData = diff.document.data()
+            if let status = orderData["status"] as? String, status == "pending" {
+                print("Updated pending order: \(diff.document.data())")
+                // Handle the update for pending orders only
+            }
+        }
+    }
+}
+```
+
+a) The order must be in 'completed' status  
+b) The order must be in 'pending' status  
+c) The order must be in 'canceled' status  
+d) The order must be in 'shipped' status  
+
+**Answer:** b) The order must be in 'pending' status
+
+---
+
+### Question 4:
+What type of changes does the listener in the tricky example respond to?
+
+a) Only new documents added  
+b) Only documents that have been deleted  
+c) Only modified documents  
+d) All types of document changes  
+
+**Answer:** c) Only modified documents
+
+---
+
+### Question 5:
+What will the following line of code do in the context of the provided examples?
+
+```swift
+snapshot.documentChanges.forEach { diff in
+```
+
+a) It will fetch all documents in the collection  
+b) It will iterate over all changes made to the documents in the snapshot  
+c) It will delete all documents in the snapshot  
+d) It will create a new document in the snapshot  
+
+**Answer:** b) It will iterate over all changes made to the documents in the snapshot
+
+---
+
+# DocumentChange.Type
+
+## Questions
+
+### Question 1:
+In Firestore, what change type is classified when a new document is added to a collection?
+
+a) MODIFIED  
+b) REMOVED  
+c) ADDED  
+d) UPDATED  
+
+**Answer:** c) ADDED
+
+---
+
+### Question 2:
+If a user profile in Firestore is updated to change the user's email address while keeping the name the same, what is the change type?
+
+a) ADDED  
+b) REMOVED  
+c) MODIFIED  
+d) UNCHANGED  
+
+**Answer:** c) MODIFIED
+
+---
+
+### Question 3:
+What will be the change type if a user profile is deleted and then a new profile with the same name is created in Firestore?
+
+a) MODIFIED  
+b) ADDED  
+c) REMOVED  
+d) UNCHANGED  
+
+**Answer:** b) ADDED
+
+---
+
+### Question 4:
+Given the following code snippet, what will be the change type when the `userProfile` document is created?
+
+```javascript
+const userProfile = {
+  name: "Jane Doe",
+  email: "jane@example.com"
+};
+firestore.collection('users').add(userProfile);
+```
+
+a) MODIFIED  
+b) ADDED  
+c) REMOVED  
+d) UPDATED  
+
+**Answer:** b) ADDED
+
+---
+
+### Question 5:
+In a scenario where a user profile is deleted and then a new profile with the same email is created, which of the following statements is true?
+
+a) The change type will be MODIFIED.  
+b) The change type will be ADDED.  
+c) The change type will be REMOVED.  
+d) The change type will be UNCHANGED.  
+
+**Answer:** b) The change type will be ADDED.
+
+---
+
+# Cloud Firestore
+
+## Questions
+
+### Question 1:
+In a mobile application using Cloud Firestore for managing to-do lists, what is the primary structure used to store each user's to-do items?
+
+a) Collection  
+b) Document  
+c) Database  
+d) Node  
+
+**Answer:** a) Collection
+
+---
+
+### Question 2:
+What feature of Cloud Firestore allows users to see real-time updates to their to-do lists across multiple devices?
+
+a) Offline support  
+b) Real-time synchronization  
+c) Data encryption  
+d) Batch writes  
+
+**Answer:** b) Real-time synchronization
+
+---
+
+### Question 3:
+In the context of an e-commerce application using Cloud Firestore, what is the best way to handle the situation where two users attempt to purchase the last item in stock?
+
+a) Allow both purchases and update the stock later  
+b) Use Firestore's transactions to ensure atomic updates  
+c) Notify one user that the item is out of stock after the purchase  
+d) Implement a first-come, first-served basis without any checks  
+
+**Answer:** b) Use Firestore's transactions to ensure atomic updates
+
+---
+
+### Question 4:
+Given the following code snippet, what will happen if two users try to execute the transaction at the same time?
+
+```javascript
+const db = firebase.firestore();
+const productRef = db.collection('products').doc('productId');
+
+db.runTransaction(async (transaction) => {
+    const doc = await transaction.get(productRef);
+    if (!doc.exists) {
+        throw "Document does not exist!";
+    }
+    const newStock = doc.data().stock - 1;
+    transaction.update(productRef, { stock: newStock });
+});
+```
+
+a) Both transactions will succeed, and the stock will be decremented twice.  
+b) One transaction will succeed, and the other will fail due to a conflict.  
+c) The stock will remain unchanged regardless of the transactions.  
+d) An error will be thrown for both transactions.  
+
+**Answer:** b) One transaction will succeed, and the other will fail due to a conflict.
+
+---
+
+### Question 5:
+Which of the following statements about Cloud Firestore is NOT true?
+
+a) It supports real-time data synchronization.  
+b) It allows for complex querying of data.  
+c) It requires a fixed schema for data storage.  
+d) It can handle offline data persistence.  
+
+**Answer:** c) It requires a fixed schema for data storage.
+
+---
+
+# Security Rules
+
+## Questions
+
+### Question 1:
+What does the following Firebase security rule allow for the `/users/{userId}` path?
+
+```plaintext
+match /users/{userId} {
+  allow read, write: if request.auth != null && request.auth.uid == userId;
+}
+```
+
+a) Anyone can read and write user documents.  
+b) Only authenticated users can read and write their own user documents.  
+c) Only unauthenticated users can read their own user documents.  
+d) Only admins can read and write user documents.  
+
+**Answer:** b) Only authenticated users can read and write their own user documents.
+
+---
+
+### Question 2:
+In the tricky example provided, who is allowed to write to the `publicPosts` collection?
+
+```plaintext
+match /publicPosts/{postId} {
+  allow read: if true; // Anyone can read public posts
+  allow write: if request.auth != null && request.auth.token.role == 'admin'; // Only admins can write
+}
+```
+
+a) Anyone can write to the `publicPosts` collection.  
+b) Only authenticated users can write to the `publicPosts` collection.  
+c) Only users with an 'admin' role can write to the `publicPosts` collection.  
+d) Only users with a 'guest' role can write to the `publicPosts` collection.  
+
+**Answer:** c) Only users with an 'admin' role can write to the `publicPosts` collection.
+
+---
+
+### Question 3:
+What is the purpose of the condition `request.auth != null` in the security rules?
+
+a) It checks if the user is an admin.  
+b) It ensures that the user is authenticated.  
+c) It allows all users to access the data.  
+d) It restricts access to only public data.  
+
+**Answer:** b) It ensures that the user is authenticated.
+
+---
+
+### Question 4:
+If a user with the UID `user123` tries to access their document in the `/users/{userId}` path, which of the following conditions must be true for them to successfully read or write their document?
+
+```plaintext
+allow read, write: if request.auth != null && request.auth.uid == userId;
+```
+
+a) The user must be authenticated and their UID must match `user123`.  
+b) The user must be authenticated and their UID must not match `user123`.  
+c) The user can access the document without authentication.  
+d) The user can access the document if they are an admin.  
+
+**Answer:** a) The user must be authenticated and their UID must match `user123`.
+
+---
+
+### Question 5:
+In the context of the tricky example, what could be a potential security risk if role management is not implemented correctly?
+
+a) Users might be able to read their own documents.  
+b) Users might be able to write to the `publicPosts` collection without being an admin.  
+c) Only admins can read public posts.  
+d) All users can write to any document in the database.  
+
+**Answer:** b) Users might be able to write to the `publicPosts` collection without being an admin.
+
+---
+
+# Firebase Authentication
+
+## Questions
+
+### Questions on Firebase Authentication
+
+**Question 1:** What is the primary purpose of Firebase Authentication in a mobile app?  
+a) To store user data  
+b) To handle user registration and login securely  
+c) To manage app performance  
+d) To provide analytics for user behavior  
+**Answer:** b) To handle user registration and login securely
+
+---
+
+**Question 2:** When a user signs up using Firebase Authentication, what action is typically taken to verify their email address?  
+a) The user is redirected to a different website  
+b) A verification email is sent to the user  
+c) The user must call customer support  
+d) The user is automatically logged in  
+**Answer:** b) A verification email is sent to the user
+
+---
+
+**Question 3:** In the context of Firebase Authentication, what is a potential issue when allowing users to log in with multiple social media accounts?  
+a) Users may forget their passwords  
+b) Users may not receive verification emails  
+c) Users may be confused about which account they are logging into  
+d) Users will have to create a new account for each social media login  
+**Answer:** c) Users may be confused about which account they are logging into
+
+---
+
+**Question 4:** Consider the following code snippet for signing in a user with email and password using Firebase Authentication. What will happen if the sign-in is successful?
+
+```javascript
+firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    console.log("User signed in:", user);
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.error("Error signing in:", errorCode, errorMessage);
+  });
+```
+
+a) The user will be logged out  
+b) The user will be redirected to a different page  
+c) The user information will be logged to the console  
+d) An error message will be displayed  
+**Answer:** c) The user information will be logged to the console
+
+---
+
+**Question 5:** If a user initially signs up with an email/password and later tries to link their Google account, what must the developer ensure?  
+a) The user must create a new account  
+b) The accounts are merged correctly without losing any user data  
+c) The user must log out before linking accounts  
+d) The Google account must be deleted  
+**Answer:** b) The accounts are merged correctly without losing any user data
+
+---
+
+**Question 6:** Which of the following is NOT a feature of Firebase Authentication?  
+a) Email/password authentication  
+b) Social media login integration  
+c) Real-time database management  
+d) Anonymous authentication  
+**Answer:** c) Real-time database management
+
+---
+
+**Question 7:** What is the first step a developer should take when implementing Firebase Authentication in their app?  
+a) Create a user interface for login  
+b) Set up Firebase in their project  
+c) Write the code for user data storage  
+d) Design the app's layout  
+**Answer:** b) Set up Firebase in their project
+
+---
+
+# User Registration and Login
+
+## Questions
+
+### Question 1:
+What method is used in Firebase Authentication to create a new user account with an email and password?
+
+a) signInWithEmailAndPassword  
+b) createUserWithEmailAndPassword  
+c) registerUser  
+d) addUser  
+
+**Answer:** b) createUserWithEmailAndPassword
+
+---
+
+### Question 2:
+What happens if a user tries to register with an email that is already associated with an existing account in Firebase Authentication?
+
+a) The user is registered successfully.  
+b) An error is thrown indicating that the email is already in use.  
+c) The user is logged in automatically.  
+d) The app crashes.  
+
+**Answer:** b) An error is thrown indicating that the email is already in use.
+
+---
+
+### Question 3:
+In the context of user registration, what is the purpose of sending a verification email?
+
+a) To confirm the user's password.  
+b) To verify the user's email address.  
+c) To notify the user of successful registration.  
+d) To provide the user with promotional offers.  
+
+**Answer:** b) To verify the user's email address.
+
+---
+
+### Question 4:
+What should an app do if a user attempts to log in with incorrect credentials?
+
+a) Log the user in anyway.  
+b) Provide a clear message indicating that the login failed.  
+c) Redirect the user to the registration page.  
+d) Automatically reset the user's password.  
+
+**Answer:** b) Provide a clear message indicating that the login failed.
+
+---
+
+### Question 5:
+Consider the following code snippet for user registration using Firebase Authentication:
+
+```javascript
+firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // User registered successfully
+  })
+  .catch((error) => {
+    // Handle Errors here.
+  });
+```
+What is the purpose of the `.catch((error) => { ... })` block in this code?
+
+a) To handle successful user registration.  
+b) To log the user out.  
+c) To handle errors that occur during user registration.  
+d) To redirect the user to the home screen.  
+
+**Answer:** c) To handle errors that occur during user registration.
+
+---
+
+# Social Media Integration
+
+## Questions
+
+### Question 1:
+What is the primary purpose of using Firebase Authentication in a mobile app for social media integration?
+a) To create a separate username and password for each user  
+b) To allow users to sign in using their social media accounts  
+c) To store user data in a local database  
+d) To prevent users from accessing the app  
+
+**Answer:** b) To allow users to sign in using their social media accounts
+
+---
+
+### Question 2:
+In the typical example of social media integration, what happens after a user successfully signs in with their Google account?
+a) The user is logged out of the app  
+b) Firebase retrieves the user's profile information and creates a new user account if necessary  
+c) The user is redirected to the app's homepage without any authentication  
+d) The app automatically deletes the user's profile  
+
+**Answer:** b) Firebase retrieves the user's profile information and creates a new user account if necessary
+
+---
+
+### Question 3:
+In the tricky example of handling multiple social media accounts, what must the app check when a user tries to log in with a different social media account?
+a) If the user has a premium subscription  
+b) If the new account has a different username  
+c) If the email associated with the new account matches the existing account's email  
+d) If the user has logged in within the last 30 days  
+
+**Answer:** c) If the email associated with the new account matches the existing account's email
+
+---
+
+### Question 4:
+Consider the following code snippet for signing in with Google using Firebase Authentication:
+
+```javascript
+firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+  .then((result) => {
+    // User signed in
+    var user = result.user;
+    console.log(user.displayName);
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });
+```
+What does the `signInWithPopup` method do in this context?
+a) It creates a new user account without authentication  
+b) It opens a popup for the user to sign in with their Google account  
+c) It logs the user out of the app  
+d) It retrieves the user's profile information without signing in  
+
+**Answer:** b) It opens a popup for the user to sign in with their Google account
+
+---
+
+### Question 5:
+What is a potential issue when a user tries to log in with a different social media account after initially signing up with another?
+a) The app will crash  
+b) The user will be required to create a new account  
+c) The app must ensure that both accounts are linked to the same user profile  
+d) The user will lose access to their previous data  
+
+**Answer:** c) The app must ensure that both accounts are linked to the same user profile
+
+---
+
+# Access Control
+
+## Questions
+
+### Question 1:
+In a mobile application using Firebase Authentication, which of the following roles typically has the ability to manage user accounts and moderate discussions?
+
+a) Member  
+b) Admin  
+c) Guest  
+d) Viewer  
+
+**Answer:** b) Admin
+
+---
+
+### Question 2:
+In the context of Firebase Firestore security rules, which of the following statements is true regarding access control for authenticated users?
+
+a) All users can read and write to any collection regardless of their role.  
+b) Only authenticated users can read or write to specific collections based on their roles.  
+c) Only admins can access the Firestore database.  
+d) Users can access any data without authentication.  
+
+**Answer:** b) Only authenticated users can read or write to specific collections based on their roles.
+
+---
+
+### Question 3:
+Consider the following Firestore security rule snippet:
+
+```javascript
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /projects/{projectId} {
+      allow read, write: if request.auth != null && request.auth.token.role == 'owner';
+    }
+  }
+}
+```
+What does this rule enforce regarding access to project documents?
+
+a) Only users with a 'viewer' role can read project documents.  
+b) Only authenticated users with the role of 'owner' can read and write to project documents.  
+c) All authenticated users can read project documents.  
+d) Anyone can read and write to project documents.  
+
+**Answer:** b) Only authenticated users with the role of 'owner' can read and write to project documents.
+
+---
+
+### Question 4:
+In a project management tool, if a project owner revokes access from a collaborator, what must happen to ensure the collaborator can no longer view or edit project details?
+
+a) The collaborator's role must be changed to 'viewer'.  
+b) The Firestore security rules must be updated to reflect the change in access.  
+c) The collaborator must be logged out of the application.  
+d) The project must be deleted.  
+
+**Answer:** b) The Firestore security rules must be updated to reflect the change in access.
+
+---
+
+### Question 5:
+Which of the following methods can users utilize to sign up for a fitness community application using Firebase Authentication?
+
+a) Only email and password  
+b) Only social media accounts  
+c) Both email/password and social media accounts  
+d) None of the above  
+
+**Answer:** c) Both email/password and social media accounts
 
 ---
 

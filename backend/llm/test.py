@@ -15,8 +15,8 @@ import json
 class Concept(BaseModel):
     """Information about a concept."""
 
-    # ^ Doc-string for the entity Person.
-    # This doc-string is sent to the LLM as the description of the schema Person,
+    # ^ Doc-string for the entity Concept.
+    # This doc-string is sent to the LLM as the description of the schema Concept,
     # and it can help to improve extraction results.
 
     # Note that:
@@ -29,20 +29,7 @@ class Concept(BaseModel):
     )
     def __str__(self):
         return f"Title: {self.title}, Details: {self.details}"
-    """
-    typical_example: Optional[str] = Field(
-        default=None, description="A typical example of the concept"
-    )
-    tricky_example: Optional[str] = Field(
-        default=None, description="A tricky example of the concept"
-    )
-    code_sample: Optional[str] = Field(
-        default=None, description="A code sample that illustrates the concept"
-    )
-    questions: Optional[str] = Field(
-        default=None, description="Questions testing the concept"
-    )
-    """
+   
 class Examples(BaseModel):
     typical_example: str = Field(
         default=None, description="A typical example of the concept"
@@ -56,11 +43,7 @@ class Questions(BaseModel):
     questions: Optional[str] = Field(
         default=None, description="Questions-answer pairs."
     )
-    """
-    answers: Optional[str] = Field(
-        default=None, description="Ground truth answers to the question"
-    )
-    """
+    
 
 
 
@@ -279,10 +262,9 @@ async def parse_pdf(path): #return
     return pages
 
 if __name__ == "__main__":
-   print(os.getcwd())
    load_dotenv()
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
-   docs= asyncio.run(parse_pdf(r"../../data/COMP4521_L6 - Data Management on Cloud.pdf"))
+   docs= asyncio.run(parse_pdf(r"data\COMP4521_L6 - Data Management on Cloud.pdf"))
    print(len(docs))
    combined_docs= combine_docs(docs, 100)
    for i in range(len(combined_docs)):
@@ -312,8 +294,11 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   with open("../../output/questions_v0.1.json", "w") as json_file:
+   file_path = "output\questions_v0.1.json"
+   with open(file_path, "w") as json_file:
     json_file.write(json_string)
+    print(f"Questions saved to {file_path}")
+
 
 
    

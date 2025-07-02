@@ -56,6 +56,21 @@ def _get_topic_id(supabase, session_id, topic_name, hf, subject=None):
         return topic.data[0]["id"] #topic is unique per session_id 
 
 def insert_document(supabase,hf:HuggingFaceEmbeddings, data, subject, topic, question_type, session_id) -> None:
+    """
+    Inserts a new document record into the Supabase "document" table.
+
+    Args:
+        supabase: The Supabase client instance used to interact with the database.
+        hf (HuggingFaceEmbeddings): An instance of HuggingFaceEmbeddings used for embedding operations.
+        data: The content or data of the document to be inserted.
+        subject: The subject associated with the document.
+        topic: The topic associated with the document.
+        question_type: The type of question related to the document.
+        session_id: The session identifier for grouping documents.
+
+    Returns:
+        None
+    """
     topic_id= _get_topic_id(supabase=supabase, session_id=session_id, topic_name=topic, hf=hf, subject=subject)
     document= Document(
         session_id=session_id,
@@ -81,6 +96,20 @@ def query_by_topic(supabase,topic_name, query_subject, hf:HuggingFaceEmbeddings)
     "query_subject": query_subject
     }).execute()
     return [result["id"] for result in results.data]
+
+def query_pp_by_topic(supabase, topic_id:list[int], subject=None) -> list[dict]:
+    """
+    Query documents by topic id and session_id.
+    Returns a list of documents.
+    """
+    if not topic_id:
+        return []
+    session_id = get_client_session()
+    if subject is not None:
+        results = supabase.table("document").select("*").eq("session_id", session_id).in_("topic_id", topic_id).eq("subject", subject).execute()
+    else:
+        results = supabase.table("document").select("*").eq("session_id", session_id).in_("topic_id", topic_id).execute()
+    return results.data
 
 def delete_data_by_session(supabase,session_id:str) -> None:
     """
@@ -124,6 +153,14 @@ def test_delete_data_by_session(supabase):
     assert not results.data, "Data not deleted"
     assert not results2.data, "Topic data not deleted"
 
+def test_query_pp_by_topic():
+    """
+    Test the query_pp_by_topic function by querying documents by topic id. 
+    """
+    results= query_pp_by_topic(supabase, [4,5], "COMP3511")
+    for result in results:
+        print(result["topic"])
+
 
 
 if __name__ == "__main__":
@@ -143,3 +180,5 @@ if __name__ == "__main__":
     #test_query_by_topic()
 
     #test_delete_data_by_session()
+
+    

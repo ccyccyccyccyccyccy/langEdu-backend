@@ -206,6 +206,7 @@ def getQuestionPrompt(mustInstrutions, mayInstructions):
                 "system",
                 "You are an expert at generating to questions to test students' understanding of concepts."
                 "You may use the examples to generate questions that are relevant to the concept. You may skip the questions if you think the given content is not enough to generate questions."
+                "You may refer to the sample questions, if any, to generate questions."
                 f"The questions MUST {mustInstrutions}"
                 f"The questions MAY {mayInstructions}"
             ),
@@ -213,13 +214,36 @@ def getQuestionPrompt(mustInstrutions, mayInstructions):
              f"The questions MUST {mustInstrutions}"
              f"The questions MAY {mayInstructions}"
              "Example questions for multiple choice questions: Question: What is the capital of France? a) Paris b) London c) Berlin d) Madrid. Answer: a) Paris"
-             "Concept: {concept}, Examples: {examples}"
+             "Concept: {concept}, Examples: {examples}, Sample Questions: {pp_questions}, "
             )
         ]
     )
     return prompt
 
-def generate_questions(concepts:List[Concept], examples:List[Examples],mustInstrutions, mayInstructions):  # Input: List of langchain docs
+def generate_questions(concepts:List[Concept], examples:List[Examples], ppQuestions, mustInstrutions, mayInstructions):  # Input: List of langchain docs
+    
+    def stringify_questions_list(questions):
+        """
+        Convert a list of questions to a string.
+        """
+        lines = []
+        for q in questions:
+            data = q["data"]
+            # Ensure data is a string, decode if it's bytes
+            if isinstance(data, bytes):
+                data = data.decode('utf-8')
+                try:
+                    data = json.loads(data)
+                except Exception:
+                    pass
+                if isinstance(data, dict):
+                    question = data.get("Question", "")
+                    answer = data.get("Answer", "")
+                    lines.append(f"Question: {question}, Answer: {answer}")
+                else:
+                    lines.append(str(data))
+        return "\n".join(lines)
+    
     # Define a custom prompt to provide instructions and any additional context
     prompt = getQuestionPrompt(mustInstrutions, mayInstructions)
 
@@ -243,38 +267,65 @@ def generate_questions(concepts:List[Concept], examples:List[Examples],mustInstr
     # Process the first few texts
     concepts= [concept.title for concept in concepts]
     examples = [str(example) for example in examples]
+    pp_questions = [stringify_questions_list(qList) for qList in ppQuestions]  # Convert ppQuestions to string if needed
     # Prepare the batch input
-    inputs = [{"concept": c, "examples": e} for c, e in zip(concepts, examples)]
-
+    inputs = [{"concept": c, "examples": e, "pp_questions": q} for c, e, q in zip(concepts, examples, pp_questions)]
+    print(inputs)
    # Invoke the chain in batch mode
     generations = chain.batch(inputs)
 
     # Extract generated questions
     questions = [gen for gen in generations]
     return concepts, questions
+
+def query_pp(subject:str, concepts):
+    """
+    Query past paper questions by subject and concepts.
+    Returns a list of lists of questions.
+    """
+    from db import query_by_topic, query_pp_by_topic
+    from user import get_client_session, get_supabase
+    from utils import get_hf_embeddings
+    supabase = get_supabase()
+    hf = get_hf_embeddings()
+    questions = [] # list of lists of documents 
+    for concept in concepts:
+        topic_name = concept.title
+        topic_id = query_by_topic(supabase, topic_name, subject, hf)
+        results = query_pp_by_topic(supabase, topic_id, subject)
+        questions.append(results)
+    return questions
     
 
 
 if __name__ == "__main__":
    load_dotenv()
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
-   docs= asyncio.run(parse_pdf(r"data\COMP4521_L6 - Data Management on Cloud.pdf"))
+   docs= asyncio.run(parse_pdf(r"data\Chapter2.pdf"))
    print(len(docs))
-   combined_docs= combine_docs(docs, 100)
-   for i in range(len(combined_docs)):
-        print(combined_docs[i].metadata)
+   combined_docs= combine_docs(docs, 100)[:3] #just get the first 10 documents for testing
+#    for i in range(len(combined_docs)):
+#         print(combined_docs[i].metadata)
 #    print("========================================")
 
    result= extract_concept(combined_docs)
+   print(f"Extracted {len(result)} concepts.")
+   pp_questions = query_pp("COMP3511", result)
+#    for q, c in zip(pp_questions, result):
+#     print(f"Concept: {c.title}")
+#     print(f"Number of pp questions: {len(q)}")
+#     for question in q:
+#         print(question["topic"])
+              
 
-   for i in range(len(result)):
-    print(result[i])
+#    for i in range(len(result)):
+#     print(result[i])
    print("========================================")
    examples = generate_examples(result)
 #    for i in range(len(examples)):
 #     print(examples[i])
 #    print("========================================")
-   concepts, questions = generate_questions(result, examples, "be multiple choice questions", "include code snippets")
+   concepts, questions = generate_questions(result, examples, pp_questions, "be multiple choice questions", "include calculations or code snippets if relevant")
 #    for i in range(len(questions)):
 #     print(questions[i])
    json_data = {
@@ -288,7 +339,7 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   file_path = "output\questions_v0.1.json"
+   file_path = "output\questions_v1.0.json"
    with open(file_path, "w") as json_file:
     json_file.write(json_string)
     print(f"Questions saved to {file_path}")

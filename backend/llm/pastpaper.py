@@ -147,7 +147,8 @@ if __name__ == "__main__":
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
    docs= asyncio.run(parse_pdf(r"data\comp3511_f2024_midterm_solution.pdf"))
    print(len(docs))
-   questions = extract_questions(docs[:5])
+   #questions = extract_questions(docs[:5]) # Limit to first 5 documents for testing
+   questions = extract_questions(docs)
    for q in questions:
         print(q)
    valid_questions = validate_extraction(questions)

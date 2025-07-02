@@ -35,3 +35,19 @@ Questions saved to output\questions_v0.1.json
     - Footnotes:
         - SimpleCache class is useless. We just add it because Pydantic syntax requires it. 
 
+## v1: integrate PP with the Supabase database
+### Setup
+- To initiate a client instance to the created DB, add the following variables to your .env file: ```SUPABASE_URL``` , ```SUPABASE_KEY```
+- Moreover, each client instance can only access rows with the same session id. If the ```SESSION_ID``` variable is not supplied in the .env file, a new one will automatically be created. For development purposes, you may find it more convenient to keep using the same session id (so you can view all your previous uploaded documents). To do that, run ```user.py```, copy the printed session id and paste it into your .env file. 
+### DB functions: described in db.py
+- main functions of interest: ```insert_document```, ```query_pp_by_topic```, ```delete_data_by_session```
+- read the doc strings and the tests for usage examples. 
+### Inserting PP documents into the DB
+- Example script shown in ```pastpaper.py```
+- Parameters to change are under the main section: 
+```docs= asyncio.run(parse_pdf(r"data\comp3511_f2024_midterm_solution.pdf"))```
+```insert_valid_questions(supabase, valid_questions, subject="COMP3511")```
+### Integration of PP into test.py
+- Main changes, under the main section:
+- ```pp_questions = query_pp("COMP3511", result)```
+- Changing the subject to ```None``` means the subject filter is not imposed. 

@@ -40,7 +40,7 @@ class Topic(BaseModel):
     session_id: str
     #inserted_at: no need
 
-def _get_topic_id(session_id, topic_name, hf, subject=None):
+def _get_topic_id(supabase, session_id, topic_name, hf, subject=None):
     #query for topic in Topic table. create if not exists
     if subject is None:
         topic = supabase.table("topic").select("*").eq("topic", topic_name).eq("session_id", session_id).execute()
@@ -55,8 +55,8 @@ def _get_topic_id(session_id, topic_name, hf, subject=None):
     else:
         return topic.data[0]["id"] #topic is unique per session_id 
 
-def insert_document(hf:HuggingFaceEmbeddings, data, subject, topic, question_type, session_id) -> None:
-    topic_id= _get_topic_id(session_id=session_id, topic_name=topic, hf=hf, subject=subject)
+def insert_document(supabase,hf:HuggingFaceEmbeddings, data, subject, topic, question_type, session_id) -> None:
+    topic_id= _get_topic_id(supabase=supabase, session_id=session_id, topic_name=topic, hf=hf, subject=subject)
     document= Document(
         session_id=session_id,
         data=data,
@@ -67,7 +67,7 @@ def insert_document(hf:HuggingFaceEmbeddings, data, subject, topic, question_typ
     )
     supabase.table("document").insert(document.model_dump()).execute()
 
-def query_by_topic(topic_name, query_subject, hf:HuggingFaceEmbeddings):
+def query_by_topic(supabase,topic_name, query_subject, hf:HuggingFaceEmbeddings):
     """
     Query documents by topic name and session_id.
     Returns a list of topic ids.
@@ -82,10 +82,17 @@ def query_by_topic(topic_name, query_subject, hf:HuggingFaceEmbeddings):
     }).execute()
     return [result["id"] for result in results.data]
 
+def delete_data_by_session(supabase,session_id:str) -> None:
+    """
+    Delete all data associated with a session_id.
+    """
+    supabase.table("document").delete().eq("session_id", session_id).execute()
+    supabase.table("topic").delete().eq("session_id", session_id).execute()
+
 
 ###################              tests          ####################
 
-def test_insert_document():
+def test_insert_document(supabase):
     """
     Test the insert_document function by inserting a sample document
     and checking if it exists in the database.
@@ -97,18 +104,26 @@ def test_insert_document():
     subject = "Geography"
     topic = "Capitals" 
     question_type = "MCQ" 
-    insert_document(hf, binary, subject, topic, question_type, session_id)
+    insert_document(supabase,hf, binary, subject, topic, question_type, session_id)
 
 def test_query_by_topic():
-    print(query_by_topic("Capitals", "Geography", hf))
-    print(query_by_topic("Capitals", "Happy", hf))
-    print(query_by_topic("Capitals", None, hf))
+    print(query_by_topic(supabase,"Capitals", "Geography", hf))
+    print(query_by_topic(supabase,"Capitals", "Happy", hf))
+    print(query_by_topic(supabase,"Capitals", None, hf))
 
+def test_delete_data_by_session(supabase):
+    """
+    Test the delete_data_by_session function by deleting all data
+    associated with a session_id and checking if it is deleted.
+    """
+    session_id = get_client_session()
+    delete_data_by_session(session_id)
+    # Check if data is deleted
+    results = supabase.table("document").select("*").eq("session_id", session_id).execute()
+    results2 = supabase.table("topic").select("*").eq("session_id", session_id).execute()
+    assert not results.data, "Data not deleted"
+    assert not results2.data, "Topic data not deleted"
 
-"""
-TODO: change requirements.txt
-TODO: RLS in supabase
-"""
 
 
 if __name__ == "__main__":
@@ -125,5 +140,6 @@ if __name__ == "__main__":
         model_kwargs=model_kwargs,
         encode_kwargs=encode_kwargs
     )
-    test_query_by_topic()
-    
+    #test_query_by_topic()
+
+    #test_delete_data_by_session()

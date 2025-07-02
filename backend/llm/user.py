@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import logging, os, time
 import hashlib
+from supabase import create_client, Client
 
 def get_client_session():
     load_dotenv()
@@ -11,6 +12,12 @@ def get_client_session():
         session_id = hashlib.sha256(str(time.time()).encode()).hexdigest()
         print(session_id)
         return session_id
+    
+def get_supabase():
+    url: str = os.environ.get("SUPABASE_URL")
+    key: str = os.environ.get("SUPABASE_KEY")
+    supabase: Client = create_client(url, key)
+    return supabase
 
 if __name__ == "__main__":
     session_id = get_client_session()

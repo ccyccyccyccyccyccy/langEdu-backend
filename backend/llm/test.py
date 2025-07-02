@@ -1,7 +1,6 @@
 import os
 import asyncio
 from dotenv import load_dotenv
-from langchain_community.document_loaders import PyPDFLoader
 from typing import Optional, List, Tuple
 
 from langchain_core.documents import Document
@@ -11,6 +10,8 @@ from pydantic import BaseModel, Field
 from langchain.schema import BaseCache, LLMResult
 from langchain_core.output_parsers import StrOutputParser
 import json
+
+from utils import parse_pdf
 
 class Concept(BaseModel):
     """Information about a concept."""
@@ -253,13 +254,6 @@ def generate_questions(concepts:List[Concept], examples:List[Examples],mustInstr
     return concepts, questions
     
 
-async def parse_pdf(path): #return 
-
-    loader = PyPDFLoader(path)
-    pages = []
-    async for page in loader.alazy_load():
-        pages.append(page)
-    return pages
 
 if __name__ == "__main__":
    load_dotenv()

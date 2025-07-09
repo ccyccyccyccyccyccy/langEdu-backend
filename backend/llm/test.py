@@ -198,8 +198,20 @@ def generate_examples(concepts:List[Concept]):  # Input: List of langchain docs
 
     return examples
 
-def getQuestionPrompt(mustInstrutions, mayInstructions):
+def getQuestionPrompt(question_type, mustInstrutions, mayInstructions): # change of inputs (add one input: question_type)
     # Define a custom prompt to provide instructions and any additional context
+    
+    # changes_start:
+    # question_type = input("A: MCQ\nB: True or False\nC:Long question\nWhich type of question do you want?")
+    example = ""
+    if question_type == 'Multiple choice question':
+        example = "multiple choice questions: Question: What is the capital of France? a) Paris b) London c) Berlin d) Madrid. Answer: a) Paris"
+    elif question_type == 'True or False question':
+        example = "true or false questions: Question: The sun rises in the west and sets in the east.True or false?  Answer: False."
+    elif question_type == 'Long question':
+        example = "long questions: Question: Explain how a hash function maps keys to array indices in a hash table. Why is the modulo operation commonly used in hash functions? Answer: A hash function converts keys (e.g., integers, strings) into indices within a fixed-size array (hash table). The modulo operation (key % table_size) ensures the output fits within the table bounds."
+    # changes_end
+
     prompt = ChatPromptTemplate.from_messages(
         [
             (
@@ -213,14 +225,15 @@ def getQuestionPrompt(mustInstrutions, mayInstructions):
             ("human", 
              f"The questions MUST {mustInstrutions}"
              f"The questions MAY {mayInstructions}"
-             "Example questions for multiple choice questions: Question: What is the capital of France? a) Paris b) London c) Berlin d) Madrid. Answer: a) Paris"
+             f"Example questions for {example}" # a small change
              "Concept: {concept}, Examples: {examples}, Sample Questions: {pp_questions}, "
             )
         ]
     )
     return prompt
 
-def generate_questions(concepts:List[Concept], examples:List[Examples], ppQuestions, mustInstrutions, mayInstructions):  # Input: List of langchain docs
+# change of input (add one input: question_type)
+def generate_questions(concepts:List[Concept], examples:List[Examples], ppQuestions, question_type, mustInstrutions, mayInstructions):  # Input: List of langchain docs
     
     def stringify_questions_list(questions):
         """
@@ -245,7 +258,7 @@ def generate_questions(concepts:List[Concept], examples:List[Examples], ppQuesti
         return "\n".join(lines)
     
     # Define a custom prompt to provide instructions and any additional context
-    prompt = getQuestionPrompt(mustInstrutions, mayInstructions)
+    prompt = getQuestionPrompt(question_type, mustInstrutions, mayInstructions)
 
     # Instantiate the AzureChatOpenAI model
     
@@ -301,7 +314,7 @@ def query_pp(subject:str, concepts):
 if __name__ == "__main__":
    load_dotenv()
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
-   docs= asyncio.run(parse_pdf(r"data\Chapter2.pdf"))
+   docs= asyncio.run(parse_pdf(r"data\Chapter4.pdf"))
    print(len(docs))
    combined_docs= combine_docs(docs, 100)[:3] #just get the first 10 documents for testing
 #    for i in range(len(combined_docs)):
@@ -325,7 +338,8 @@ if __name__ == "__main__":
 #    for i in range(len(examples)):
 #     print(examples[i])
 #    print("========================================")
-   concepts, questions = generate_questions(result, examples, pp_questions, "be multiple choice questions", "include calculations or code snippets if relevant")
+   question_type = input("Multiple choice question / True or False question / Long question? Which type of question do you want?")
+   concepts, questions = generate_questions(result, examples, pp_questions, question_type, f"be {question_type}", "include calculations or code snippets if relevant")
 #    for i in range(len(questions)):
 #     print(questions[i])
    json_data = {
@@ -339,7 +353,7 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   file_path = "output\questions_v1.0.json"
+   file_path = "output\questions_3511.json"
    with open(file_path, "w") as json_file:
     json_file.write(json_string)
     print(f"Questions saved to {file_path}")

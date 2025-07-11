@@ -1,6 +1,7 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
 from pydantic import BaseModel, Json
+from enum import Enum
 import json
 import os
 from supabase import create_client, Client
@@ -22,6 +23,15 @@ print(len(embedding))
 print(type(embedding))  #list of floats
 
 """
+class Qtype(str, Enum):
+    MCQ = "MCQ"
+    ShortAnswer = "Short Answer"
+    LongAnswer = "Long Answer"
+    Coding = "Coding"
+    Numerical = "Numerical"
+    Others = "Others"
+    TrueFalse = "True or False"
+
 class Document(BaseModel):
     #no need for id
     session_id: str
@@ -29,7 +39,7 @@ class Document(BaseModel):
     data: Json
     subject: str
     topic: str
-    question_type: str
+    question_type: Qtype
     topic_id: int 
 
 class Topic(BaseModel):
@@ -39,6 +49,8 @@ class Topic(BaseModel):
     embedding: list[float]
     session_id: str
     #inserted_at: no need
+
+
 
 def _get_topic_id(supabase, session_id, topic_name, hf, subject=None):
     #query for topic in Topic table. create if not exists
@@ -97,18 +109,19 @@ def query_by_topic(supabase,topic_name, query_subject, hf:HuggingFaceEmbeddings)
     }).execute()
     return [result["id"] for result in results.data]
 
-def query_pp_by_topic(supabase, topic_id:list[int], subject=None) -> list[dict]:
+def query_pp_by_topic(supabase, topic_id:list[int], question_types:list[Qtype], subject=None) -> list[dict]:
     """
     Query documents by topic id and session_id.
     Returns a list of documents.
     """
+    question_strings = [qtype.value for qtype in question_types]
     if not topic_id:
         return []
     session_id = get_client_session()
     if subject is not None:
-        results = supabase.table("document").select("*").eq("session_id", session_id).in_("topic_id", topic_id).eq("subject", subject).execute()
+        results = supabase.table("document").select("*").eq("session_id", session_id).in_("topic_id", topic_id).eq("subject", subject).in_("question_type", question_strings).execute()
     else:
-        results = supabase.table("document").select("*").eq("session_id", session_id).in_("topic_id", topic_id).execute()
+        results = supabase.table("document").select("*").eq("session_id", session_id).in_("topic_id", topic_id).in_("question_type", question_strings).execute()
     return results.data
 
 def delete_data_by_session(supabase,session_id:str) -> None:
@@ -157,7 +170,7 @@ def test_query_pp_by_topic():
     """
     Test the query_pp_by_topic function by querying documents by topic id. 
     """
-    results= query_pp_by_topic(supabase, [4,5], "COMP3511")
+    results= query_pp_by_topic(supabase, [4,5], [Qtype.MCQ], "COMP3511")
     for result in results:
         print(result["topic"])
 
@@ -177,8 +190,7 @@ if __name__ == "__main__":
         model_kwargs=model_kwargs,
         encode_kwargs=encode_kwargs
     )
-    #test_query_by_topic()
+    test_query_pp_by_topic()
 
     #test_delete_data_by_session()
-
     

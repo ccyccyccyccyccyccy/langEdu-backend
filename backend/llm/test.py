@@ -12,6 +12,7 @@ from langchain_core.output_parsers import StrOutputParser
 import json
 
 from utils import parse_pdf
+from db import Qtype
 
 class Concept(BaseModel):
     """Information about a concept."""
@@ -210,6 +211,8 @@ def getQuestionPrompt(question_type, mustInstrutions, mayInstructions): # change
         example = "true or false questions: Question: The sun rises in the west and sets in the east.True or false?  Answer: False."
     elif question_type == 'Long question':
         example = "long questions: Question: Explain how a hash function maps keys to array indices in a hash table. Why is the modulo operation commonly used in hash functions? Answer: A hash function converts keys (e.g., integers, strings) into indices within a fixed-size array (hash table). The modulo operation (key % table_size) ensures the output fits within the table bounds."
+    else:
+        raise ValueError("Invalid question type. Please choose from 'Multiple choice question', 'True or False question', or 'Long question'.")
     # changes_end
 
     prompt = ChatPromptTemplate.from_messages(
@@ -283,7 +286,6 @@ def generate_questions(concepts:List[Concept], examples:List[Examples], ppQuesti
     pp_questions = [stringify_questions_list(qList) for qList in ppQuestions]  # Convert ppQuestions to string if needed
     # Prepare the batch input
     inputs = [{"concept": c, "examples": e, "pp_questions": q} for c, e, q in zip(concepts, examples, pp_questions)]
-    print(inputs)
    # Invoke the chain in batch mode
     generations = chain.batch(inputs)
 
@@ -291,7 +293,7 @@ def generate_questions(concepts:List[Concept], examples:List[Examples], ppQuesti
     questions = [gen for gen in generations]
     return concepts, questions
 
-def query_pp(subject:str, concepts):
+def query_pp(subject:str, concepts, question_type:str):
     """
     Query past paper questions by subject and concepts.
     Returns a list of lists of questions.
@@ -299,13 +301,18 @@ def query_pp(subject:str, concepts):
     from db import query_by_topic, query_pp_by_topic
     from user import get_client_session, get_supabase
     from utils import get_hf_embeddings
+    question_type_dict={
+        "Multiple choice question": [Qtype.MCQ],
+        "True or False question": [Qtype.TrueFalse],
+        "Long question": [Qtype.Coding, Qtype.Numerical, Qtype.LongAnswer, Qtype.Others]
+    }
     supabase = get_supabase()
     hf = get_hf_embeddings()
     questions = [] # list of lists of documents 
     for concept in concepts:
         topic_name = concept.title
         topic_id = query_by_topic(supabase, topic_name, subject, hf)
-        results = query_pp_by_topic(supabase, topic_id, subject)
+        results = query_pp_by_topic(supabase, topic_id, subject=subject, question_types=question_type_dict[question_type])
         questions.append(results)
     return questions
     
@@ -314,7 +321,7 @@ def query_pp(subject:str, concepts):
 if __name__ == "__main__":
    load_dotenv()
    os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
-   docs= asyncio.run(parse_pdf(r"data\Chapter4.pdf"))
+   docs= asyncio.run(parse_pdf(r"data\Chapter2.pdf"))
    print(len(docs))
    combined_docs= combine_docs(docs, 100)[:3] #just get the first 10 documents for testing
 #    for i in range(len(combined_docs)):
@@ -323,7 +330,12 @@ if __name__ == "__main__":
 
    result= extract_concept(combined_docs)
    print(f"Extracted {len(result)} concepts.")
-   pp_questions = query_pp("COMP3511", result)
+   question_type = input("Multiple choice question / True or False question / Long question? Which type of question do you want?")
+   
+   pp_questions = query_pp("COMP3511", result, question_type)
+   for i, q in enumerate(pp_questions):
+       print(f"Concept: {result[i].title}")
+       print(f"{q}")
 #    for q, c in zip(pp_questions, result):
 #     print(f"Concept: {c.title}")
 #     print(f"Number of pp questions: {len(q)}")
@@ -338,7 +350,7 @@ if __name__ == "__main__":
 #    for i in range(len(examples)):
 #     print(examples[i])
 #    print("========================================")
-   question_type = input("Multiple choice question / True or False question / Long question? Which type of question do you want?")
+   
    concepts, questions = generate_questions(result, examples, pp_questions, question_type, f"be {question_type}", "include calculations or code snippets if relevant")
 #    for i in range(len(questions)):
 #     print(questions[i])
@@ -353,7 +365,7 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   file_path = "output\questions_3511.json"
+   file_path = "output\questions_3511_LQ.json"
    with open(file_path, "w") as json_file:
     json_file.write(json_string)
     print(f"Questions saved to {file_path}")

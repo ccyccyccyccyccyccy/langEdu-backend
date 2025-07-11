@@ -18,13 +18,7 @@ from utils import parse_pdf, get_hf_embeddings
 from db import *
 from user import get_client_session, get_supabase
 
-class Qtype(str, Enum):
-    MCQ = "MCQ"
-    ShortAnswer = "Short Answer"
-    LongAnswer = "Long Answer"
-    Coding = "Coding"
-    Numerical = "Numerical"
-    Others = "Others"
+
 
 class PastpaperQ(BaseModel):
     """Information about a past paper question."""
@@ -35,8 +29,8 @@ class PastpaperQ(BaseModel):
     topic: str = Field(
         description="Fine-grained topic of the question, e.g.'Capitals of countries' in Geography"
     )
-    question_type: str = Field(
-        description="Type of question, e.g. 'MCQ', 'Short Answer', etc."
+    question_type: Qtype = Field(
+        description="Type of question, one of: 'MCQ', 'Short Answer', 'Long Answer', 'Coding', 'Numerical', 'Others', 'True or False'"
     )
     def __str__(self):
         return f"Question: {self.question}, Answer: {self.answer}, Topic: {self.topic}, Type: {self.question_type}"

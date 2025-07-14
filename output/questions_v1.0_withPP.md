@@ -1,0 +1,706 @@
+# Operating System Services
+
+## Questions
+
+1. Question: Which of the following is NOT a service provided by an operating system?  
+   a) File management  
+   b) Process scheduling  
+   c) Network routing  
+   d) Memory management  
+   **Answer:** c) Network routing  
+
+2. Question: When a user saves a document, which of the following actions does the operating system NOT perform?  
+   a) Writing the document to the hard drive  
+   b) Managing the file system  
+   c) Creating a backup on a cloud server  
+   d) Ensuring file retrieval later  
+   **Answer:** c) Creating a backup on a cloud server  
+
+3. Question: In a scenario where a video player, web browser, and word processor are running, which application should the operating system prioritize for CPU time to avoid lag?  
+   a) Web browser  
+   b) Word processor  
+   c) Video player  
+   d) None of the above  
+   **Answer:** c) Video player  
+
+4. Question: If an operating system allocates CPU time to applications based on their needs, which of the following scheduling algorithms might it use?  
+   a) First-Come, First-Served  
+   b) Round Robin  
+   c) Shortest Job Next  
+   d) All of the above  
+   **Answer:** d) All of the above  
+
+5. Question: Which of the following best describes the role of permissions in file management?  
+   a) They determine the size of the file.  
+   b) They control who can access or modify the file.  
+   c) They dictate the file format.  
+   d) They manage the file's location on the disk.  
+   **Answer:** b) They control who can access or modify the file.  
+
+6. Question: If an operating system is designed to ensure quick response times for user input in a word processor while also managing a video player's real-time processing needs, which of the following concepts is it demonstrating?  
+   a) File management  
+   b) Process scheduling  
+   c) Memory allocation  
+   d) Device management  
+   **Answer:** b) Process scheduling  
+
+7. Question: In a multi-tasking operating system, which of the following is a potential consequence of poor process scheduling?  
+   a) Increased file storage capacity  
+   b) Improved application performance  
+   c) Application lag or unresponsiveness  
+   d) Enhanced security features  
+   **Answer:** c) Application lag or unresponsiveness  
+
+8. Question: Which of the following file operations is NOT typically managed by an operating system?  
+   a) Creating a new file  
+   b) Reading an existing file  
+   c) Compressing a file  
+   d) Deleting a file  
+   **Answer:** c) Compressing a file  
+
+---
+
+# User Interface
+
+## Questions
+
+Question 1: Which of the following is a characteristic of a Graphical User Interface (GUI)?  
+a) Requires knowledge of command syntax  
+b) Utilizes windows, icons, and menus  
+c) Operates solely through keyboard commands  
+d) Is only available on mobile devices  
+**Answer:** b) Utilizes windows, icons, and menus  
+
+Question 2: In a Command-Line Interface (CLI), which command would you use to list files in a directory on a Linux system?  
+a) list files  
+b) dir  
+c) ls  
+d) show files  
+**Answer:** c) ls  
+
+Question 3: What is a primary advantage of using a GUI over a CLI?  
+a) More efficient for experienced users  
+b) Easier for beginners to understand  
+c) Requires less system resources  
+d) Provides more control over system settings  
+**Answer:** b) Easier for beginners to understand  
+
+Question 4: If a user wants to install a software package named "example-package" using the CLI, which command would they use?  
+a) install example-package  
+b) sudo apt-get install example-package  
+c) get example-package  
+d) download example-package  
+**Answer:** b) sudo apt-get install example-package  
+
+Question 5: Which of the following statements is true regarding GUIs and CLIs?  
+a) GUIs are always faster than CLIs  
+b) CLIs provide a more visual representation of tasks  
+c) GUIs are generally more user-friendly for non-technical users  
+d) CLIs do not require any commands to be typed  
+**Answer:** c) GUIs are generally more user-friendly for non-technical users  
+
+---
+
+# Program Execution
+
+## Questions
+
+Question 1: When a user opens a word processing application, what does the operating system primarily do first?  
+a) Saves the document  
+b) Loads the program's executable file into RAM  
+c) Closes all other applications  
+d) Installs updates for the application  
+**Answer:** b) Loads the program's executable file into RAM  
+
+Question 2: In the context of program execution, what is a process control block (PCB)?  
+a) A type of memory allocation  
+b) A data structure used by the OS to manage processes  
+c) A user interface element  
+d) A file format for executable programs  
+**Answer:** b) A data structure used by the OS to manage processes  
+
+Question 3: What happens when a user tries to import a large video file into a video editing software that is already using a significant amount of RAM?  
+a) The program automatically saves the file  
+b) The OS triggers an out-of-memory exception  
+c) The video file is imported successfully without issues  
+d) The OS shuts down the computer  
+**Answer:** b) The OS triggers an out-of-memory exception  
+
+Question 4: If a user closes a word processing application, what does the operating system do to handle normal termination?  
+a) Deletes the application from the hard drive  
+b) Frees up the allocated memory and saves any unsaved work  
+c) Installs updates for the application  
+d) Restarts the computer  
+**Answer:** b) Frees up the allocated memory and saves any unsaved work  
+
+Question 5: In a scenario where the OS is managing program execution under resource constraints, what might it prompt the user to do?  
+a) Upgrade their hardware  
+b) Close other applications or reduce the file size  
+c) Restart the computer  
+d) Change the operating system  
+**Answer:** b) Close other applications or reduce the file size  
+
+Question 6: Which of the following best describes the role of the operating system during program execution?  
+a) It only runs the program without any management  
+b) It manages CPU time and responds to user inputs  
+c) It installs new software automatically  
+d) It only saves files to disk  
+**Answer:** b) It manages CPU time and responds to user inputs  
+
+---
+
+# I/O Operations
+
+## Questions
+
+Question 1: What is the primary purpose of I/O operations in a text editor application?  
+a) To perform calculations  
+b) To read and write data to and from files  
+c) To display graphics  
+d) To manage memory allocation  
+**Answer:** b) To read and write data to and from files  
+
+Question 2: What issue can arise when a program attempts to read from a file that is currently being written to by another process?  
+a) Memory leak  
+b) Race condition  
+c) Syntax error  
+d) Infinite loop  
+**Answer:** b) Race condition  
+
+Question 3: In a scenario where a logging application is writing logs to a file, what might happen if another application tries to read from that file simultaneously?  
+a) The reader will always get the latest data  
+b) The reader might get inconsistent or corrupted data  
+c) The reader will be blocked until the writer is finished  
+d) The reader will receive an error message  
+**Answer:** b) The reader might get inconsistent or corrupted data  
+
+Question 4: If a text editor application reads a file containing 1000 characters and the user types 500 new characters before saving, how many characters will the file contain after saving?  
+a) 1000  
+b) 1500  
+c) 500  
+d) 0  
+**Answer:** b) 1500  
+
+Question 5: In a programming context, which of the following code snippets correctly opens a file for reading in Python?  
+a) `open("file.txt", "w")`  
+b) `open("file.txt", "r")`  
+c) `open("file.txt", "a")`  
+d) `open("file.txt", "x")`  
+**Answer:** b) `open("file.txt", "r")`  
+
+---
+
+# System Calls
+
+## Questions
+
+Question 1: What is the purpose of the 'open' system call in Unix-like operating systems?  
+a) To create a new process  
+b) To access a file  
+c) To terminate a process  
+d) To allocate memory  
+**Answer:** b) To access a file  
+
+Question 2: What does the 'fork' system call do in a Unix-like operating system?  
+a) It opens a file  
+b) It creates a new process  
+c) It reads data from a file  
+d) It writes data to a file  
+**Answer:** b) It creates a new process  
+
+Question 3: When a program calls 'fork', what does it return in the parent process?  
+a) 0  
+b) The child's PID  
+c) The parent's PID  
+d) An error code  
+**Answer:** b) The child's PID  
+
+Question 4: In the context of the 'fork' system call, what does the child process receive as a return value?  
+a) The parent's PID  
+b) The child's PID  
+c) 0  
+d) An error code  
+**Answer:** c) 0  
+
+Question 5: Which of the following is a potential issue that can arise from using the 'fork' system call?  
+a) File permission errors  
+b) Memory leaks  
+c) Race conditions  
+d) Infinite loops  
+**Answer:** c) Race conditions  
+
+Question 6: If a program successfully opens a file using the 'open' system call, what does it receive as a result?  
+a) The file name  
+b) A file descriptor  
+c) The file size  
+d) The file content  
+**Answer:** b) A file descriptor  
+
+Question 7: Which of the following modes can be specified when using the 'open' system call?  
+a) Read  
+b) Write  
+c) Append  
+d) All of the above  
+**Answer:** d) All of the above  
+
+Question 8: What happens to the memory space of the parent and child processes after a 'fork' system call?  
+a) They share the same memory space  
+b) They have different memory spaces  
+c) The child process inherits the parent's memory space  
+d) The parent process is terminated  
+**Answer:** b) They have different memory spaces  
+
+---
+
+# Operating System Design Strategies
+
+## Questions
+
+Question 1: Which of the following is a characteristic of a monolithic operating system?  
+a) Modular components running in user mode  
+b) High performance due to direct communication between components  
+c) Simplified maintenance and debugging  
+d) Separation of services into distinct processes  
+**Answer:** b) High performance due to direct communication between components  
+
+Question 2: What is a key feature of a hybrid operating system like Windows NT?  
+a) It runs entirely in user mode.  
+b) It has a purely monolithic structure.  
+c) It incorporates both monolithic and microkernel elements.  
+d) It does not support modular components.  
+**Answer:** c) It incorporates both monolithic and microkernel elements.  
+
+Question 3: In a microkernel architecture, which of the following services typically runs in user mode?  
+a) Device drivers  
+b) File system management  
+c) Process management  
+d) All of the above  
+**Answer:** d) All of the above  
+
+Question 4: Which of the following operating systems is an example of a monolithic design?  
+a) Windows NT  
+b) Linux  
+c) macOS  
+d) Android  
+**Answer:** b) Linux  
+
+Question 5: What is one disadvantage of a monolithic operating system?  
+a) High performance  
+b) Complexity and difficulty in maintenance  
+c) Easy to extend with new features  
+d) Better security due to isolated components  
+**Answer:** b) Complexity and difficulty in maintenance  
+
+Question 6: If a hybrid operating system has 10 services running in kernel mode and 5 services running in user mode, what is the ratio of kernel mode services to user mode services?  
+a) 2:1  
+b) 1:2  
+c) 5:2  
+d) 1:1  
+**Answer:** a) 2:1  
+
+---
+
+# File-system manipulation
+
+## Questions
+
+Question 1: What is the primary action performed when a user saves a document in a text editor?  
+a) Deleting a file  
+b) Creating a new file  
+c) Modifying an existing file  
+d) Closing the application  
+**Answer:** c) Modifying an existing file  
+
+Question 2: What error might a user encounter when trying to delete a file that is currently open in another application?  
+a) File not found  
+b) Permission denied  
+c) File in use  
+d) Disk full  
+**Answer:** c) File in use  
+
+Question 3: Which of the following commands would you use in a command line interface to create a new text file named 'notes.txt'?  
+a) touch notes.txt  
+b) create notes.txt  
+c) new notes.txt  
+d) save notes.txt  
+**Answer:** a) touch notes.txt  
+
+Question 4: In a multi-user environment, what is a potential consequence of attempting to delete a file that is open by another user?  
+a) The file will be deleted without issues  
+b) The file will be copied to another location  
+c) The system may return an error  
+d) The file will be automatically closed  
+**Answer:** c) The system may return an error  
+
+Question 5: If a user wants to modify the content of 'notes.txt', which of the following actions should they take?  
+a) Delete 'notes.txt'  
+b) Open 'notes.txt' in a text editor  
+c) Rename 'notes.txt'  
+d) Move 'notes.txt' to another folder  
+**Answer:** b) Open 'notes.txt' in a text editor  
+
+---
+
+# Communications
+
+## Questions
+
+1. Question: In a multi-threaded application, how do two threads typically communicate when running on the same computer?  
+   a) By using network sockets  
+   b) By using shared memory  
+   c) By sending emails  
+   d) By writing to a file  
+   Answer: b) By using shared memory  
+
+2. Question: What is a potential issue when using message passing in a distributed system?  
+   a) Messages are always delivered instantly  
+   b) Processes can communicate without any overhead  
+   c) A process may send a message to another that is currently down  
+   d) All messages are guaranteed to be received in order  
+   Answer: c) A process may send a message to another that is currently down  
+
+3. Question: If Process A sends a message to Process B and B is not available, what mechanism should A implement to handle this situation?  
+   a) Ignore the message  
+   b) Implement a retry mechanism or a timeout  
+   c) Send the message to another process  
+   d) Wait indefinitely for Process B to become available  
+   Answer: b) Implement a retry mechanism or a timeout  
+
+4. Question: In a multi-threaded application, which of the following is a benefit of using shared memory for communication?  
+   a) It is slower than network communication  
+   b) It allows for fast and efficient data exchange  
+   c) It requires complex serialization of data  
+   d) It is limited to a single thread  
+   Answer: b) It allows for fast and efficient data exchange  
+
+5. Question: Which of the following best describes the communication method used in a distributed system?  
+   a) Shared memory  
+   b) Message passing  
+   c) Direct variable access  
+   d) File sharing  
+   Answer: b) Message passing  
+
+---
+
+# Error detection
+
+## Questions
+
+Question 1: What is the purpose of using checksums in data transfer?  
+a) To increase the speed of data transfer  
+b) To verify the integrity of the data  
+c) To compress the data  
+d) To encrypt the data  
+**Answer:** b) To verify the integrity of the data  
+
+Question 2: What happens when a checksum mismatch is detected during a read operation?  
+a) The operating system ignores the error  
+b) The operating system requests the data to be sent again  
+c) The system crashes immediately  
+d) The data is automatically corrected  
+**Answer:** b) The operating system requests the data to be sent again  
+
+Question 3: In the case of a segmentation fault, what action does the operating system take?  
+a) It crashes the entire system  
+b) It isolates the offending program and logs the error  
+c) It automatically fixes the program  
+d) It restarts the computer  
+**Answer:** b) It isolates the offending program and logs the error  
+
+Question 4: Which of the following best describes a segmentation fault?  
+a) A successful memory access  
+b) An illegal access to a memory address  
+c) A type of data compression error  
+d) A network communication failure  
+**Answer:** b) An illegal access to a memory address  
+
+Question 5: If a program attempts to access a memory address it is not permitted to access, what is the likely outcome?  
+a) The program continues running without issues  
+b) The operating system will terminate the program and allow others to run  
+c) The memory address is automatically corrected  
+d) The program will access the memory address successfully  
+**Answer:** b) The operating system will terminate the program and allow others to run  
+
+---
+
+# Debugging facilities
+
+## Questions
+
+Question 1: Which of the following is a built-in debugging tool commonly found in Integrated Development Environments (IDEs)?  
+a) Code formatting  
+b) Breakpoints  
+c) Syntax highlighting  
+d) Auto-completion  
+**Answer:** b) Breakpoints  
+
+Question 2: What is a potential downside of excessive logging in an application?  
+a) Improved performance  
+b) Enhanced security  
+c) Performance degradation  
+d) Increased code readability  
+**Answer:** c) Performance degradation  
+
+Question 3: In a debugging session, what does stepping through code allow a programmer to do?  
+a) Compile the code  
+b) Execute the code without any interruptions  
+c) Pause execution and examine variable states  
+d) Automatically fix errors  
+**Answer:** c) Pause execution and examine variable states  
+
+Question 4: Which of the following logging frameworks is commonly used in Java applications?  
+a) Winston  
+b) Log4j  
+c) Debugger  
+d) Eclipse  
+**Answer:** b) Log4j  
+
+Question 5: If a developer uses breakpoints in their code, what is the primary purpose of this action?  
+a) To increase the execution speed of the program  
+b) To stop the program at a specific line for inspection  
+c) To automatically correct syntax errors  
+d) To compile the code without errors  
+**Answer:** b) To stop the program at a specific line for inspection  
+
+---
+
+# Resource Allocation
+
+## Questions
+
+Question 1: In a multi-user operating system, if User A is allocated 30% of CPU time and User B is allocated 70%, what is the total CPU time allocated if the total CPU time available is 100 seconds?  
+a) 30 seconds  
+b) 70 seconds  
+c) 100 seconds  
+d) 50 seconds  
+**Answer:** c) 100 seconds  
+
+Question 2: In a cloud computing environment, if VM1 requires 80% of the CPU resources and VM2 requires 20%, what happens if VM1's CPU usage spikes to 90%?  
+a) VM1 will receive all CPU resources  
+b) VM2 will receive more CPU resources  
+c) VM1 may starve VM2 of resources  
+d) Both VMs will receive equal resources  
+**Answer:** c) VM1 may starve VM2 of resources  
+
+Question 3: Which of the following techniques can be used to prevent resource starvation in a cloud environment?  
+a) Resource quotas  
+b) Dynamic scaling  
+c) Load balancing  
+d) All of the above  
+**Answer:** d) All of the above  
+
+Question 4: If a scheduling algorithm allocates CPU time slices based on resource demands, which of the following scenarios would likely receive a larger time slice?  
+a) A web browser running a simple webpage  
+b) A video editing software rendering a high-definition video  
+c) A text editor with a large document open  
+d) A music player playing a song  
+**Answer:** b) A video editing software rendering a high-definition video  
+
+Question 5: In a multi-user operating system, if the total CPU time is divided into 10 time slices and User A is allocated 3 slices while User B is allocated 7 slices, how many time slices does User B receive compared to User A?  
+a) 2 slices  
+b) 3 slices  
+c) 4 slices  
+d) 5 slices  
+**Answer:** c) 4 slices  
+
+---
+
+# Logging
+
+## Questions
+
+Question 1: What is the primary purpose of a logging system in a company?  
+a) To monitor employee attendance  
+b) To track computer resource usage  
+c) To manage payroll  
+d) To schedule meetings  
+**Answer:** b) To track computer resource usage  
+
+Question 2: If John uses a design software for 3 hours and a spreadsheet application for 2 hours in a day, how many total hours did he spend using computer resources?  
+a) 2 hours  
+b) 3 hours  
+c) 5 hours  
+d) 6 hours  
+**Answer:** c) 5 hours  
+
+Question 3: In a scenario where Alice uses a computer from 9 AM to 11 AM and Bob from 11 AM to 1 PM, how many hours did each employee use the computer?  
+a) Alice: 1 hour, Bob: 2 hours  
+b) Alice: 2 hours, Bob: 1 hour  
+c) Alice: 2 hours, Bob: 2 hours  
+d) Alice: 1 hour, Bob: 1 hour  
+**Answer:** c) Alice: 2 hours, Bob: 2 hours  
+
+Question 4: If Alice leaves her session open while Bob uses the computer, what is a potential issue the logging system must address?  
+a) Misattributing resource usage  
+b) Overloading the system  
+c) Deleting Alice's session  
+d) Increasing CPU time  
+**Answer:** a) Misattributing resource usage  
+
+Question 5: Which of the following is NOT a feature of an effective logging system?  
+a) Tracking individual user sessions  
+b) Analyzing resource allocation  
+c) Automatically shutting down computers  
+d) Identifying software license issues  
+**Answer:** c) Automatically shutting down computers  
+
+---
+
+# Protection and Security
+
+## Questions
+
+Question 1: In a multiuser database system, what happens when User A is updating their profile information?  
+a) User B can also update the same record simultaneously  
+b) The system locks the specific record for User A  
+c) User A's changes are automatically saved without locking  
+d) User B's changes overwrite User A's changes  
+**Answer:** b) The system locks the specific record for User A  
+
+Question 2: In a cloud storage service, what is a potential issue when two users upload files with the same name?  
+a) The system will automatically delete the older file  
+b) The system will rename the new file to avoid conflict  
+c) Both files will be uploaded without any issues  
+d) The system will prompt User A to delete their file  
+**Answer:** b) The system will rename the new file to avoid conflict  
+
+Question 3: What is the primary purpose of implementing a version control mechanism in a shared folder?  
+a) To allow users to delete files easily  
+b) To ensure that all users can upload files without restrictions  
+c) To prevent data loss when multiple users upload files with the same name  
+d) To automatically back up all files uploaded by users  
+**Answer:** c) To prevent data loss when multiple users upload files with the same name  
+
+Question 4: If User A uploads a file named 'report.docx' and User B uploads a file with the same name, which of the following actions might the system take?  
+a) Overwrite User A's file with User B's file  
+b) Rename User A's file to 'report(1).docx'  
+c) Prompt User B to choose a different name  
+d) Both b and c  
+**Answer:** d) Both b and c  
+
+Question 5: In a multiuser environment, what is the main benefit of locking a record when a user is making changes?  
+a) It allows all users to edit the record simultaneously  
+b) It prevents data corruption and ensures changes are saved correctly  
+c) It speeds up the process of saving changes  
+d) It allows users to view each other's changes in real-time  
+**Answer:** b) It prevents data corruption and ensures changes are saved correctly  
+
+---
+
+# Access Control
+
+## Questions
+
+1. Question: What is the primary purpose of role-based access control (RBAC) in a corporate environment?  
+   a) To increase the number of users  
+   b) To assign permissions based on user roles  
+   c) To eliminate all access restrictions  
+   d) To allow all employees to access sensitive information  
+   Answer: b) To assign permissions based on user roles  
+
+2. Question: In the context of access control, what could be a potential risk if an employee forgets to log out of a shared computer?  
+   a) Increased productivity  
+   b) Unauthorized access to confidential documents  
+   c) Improved session management  
+   d) Enhanced security protocols  
+   Answer: b) Unauthorized access to confidential documents  
+
+3. Question: Which of the following roles would typically have access to sensitive financial records in an RBAC system?  
+   a) Employee  
+   b) Manager  
+   c) Admin  
+   d) Intern  
+   Answer: c) Admin  
+
+4. Question: If an employee with the 'Employee' role tries to access a financial report that is restricted to 'Admin' users, what should happen according to RBAC principles?  
+   a) The employee should be granted access  
+   b) The employee should be denied access  
+   c) The employee should be prompted to request access  
+   d) The employee should be automatically upgraded to 'Admin'  
+   Answer: b) The employee should be denied access  
+
+5. Question: What is a critical aspect of session management in access control?  
+   a) Allowing multiple users to share the same account  
+   b) Ensuring access is revoked when a user logs out  
+   c) Keeping all sessions active indefinitely  
+   d) Allowing users to change their roles at any time  
+   Answer: b) Ensuring access is revoked when a user logs out  
+
+6. Question: In a scenario where an employee has access to their own personal information, what type of access control is being utilized?  
+   a) Discretionary Access Control (DAC)  
+   b) Mandatory Access Control (MAC)  
+   c) Role-Based Access Control (RBAC)  
+   d) Attribute-Based Access Control (ABAC)  
+   Answer: c) Role-Based Access Control (RBAC)  
+
+7. Question: If a company implements RBAC and assigns the role of 'Manager' to a user, which of the following permissions might they typically have?  
+   a) Access to all employee records  
+   b) Ability to modify financial documents  
+   c) Permission to approve leave requests  
+   d) Access to system configuration settings  
+   Answer: c) Permission to approve leave requests  
+
+---
+
+# User Authentication
+
+## Questions
+
+1. Question: What is the primary purpose of user authentication in a system?  
+   a) To enhance user experience  
+   b) To ensure only authorized users can access sensitive information  
+   c) To collect user data  
+   d) To improve system performance  
+   **Answer:** b) To ensure only authorized users can access sensitive information
+
+2. Question: In a typical user authentication scenario, what must a user provide to gain access to their account?  
+   a) Username and password  
+   b) Email address and phone number  
+   c) Social security number and date of birth  
+   d) Username and security question  
+   **Answer:** a) Username and password
+
+3. Question: What is an example of multi-factor authentication (MFA)?  
+   a) Entering a username and password only  
+   b) Providing a username, password, and a fingerprint scan  
+   c) Using a password manager  
+   d) Changing the password every month  
+   **Answer:** b) Providing a username, password, and a fingerprint scan
+
+4. Question: If a user successfully enters their username and password but fails to provide the second form of verification in an MFA system, what will happen?  
+   a) They will be granted access  
+   b) They will be prompted to reset their password  
+   c) They will be denied access  
+   d) They will be logged out automatically  
+   **Answer:** c) They will be denied access
+
+5. Question: Which of the following is NOT a common method of user authentication?  
+   a) Passwords  
+   b) Biometric scans  
+   c) CAPTCHA  
+   d) Email newsletters  
+   **Answer:** d) Email newsletters
+
+6. Question: In a login system, if a user enters the correct username but an incorrect password, what is the expected outcome?  
+   a) Access granted  
+   b) Access denied  
+   c) User is logged out  
+   d) User is prompted to change their password  
+   **Answer:** b) Access denied
+
+7. Question: Which of the following best describes the role of a one-time code in multi-factor authentication?  
+   a) It is a permanent password  
+   b) It is a temporary code used for a single login attempt  
+   c) It is used to recover forgotten passwords  
+   d) It is a backup username  
+   **Answer:** b) It is a temporary code used for a single login attempt
+
+8. Question: If a user is required to enter a code sent to their mobile device after entering their username and password, which authentication method are they using?  
+   a) Single-factor authentication  
+   b) Multi-factor authentication  
+   c) Biometric authentication  
+   d) Token-based authentication  
+   **Answer:** b) Multi-factor authentication
+
+---
+

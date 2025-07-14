@@ -26,7 +26,7 @@ def saveMarkdownToFile(markdownStr: str, filename: str):
 
 if __name__ == "__main__":
     # Combine JSON to Markdown
-    json_path= r"output\questions_v1.0.json"
+    json_path= r"output\questions_v1.0_withPP.json"
     markdown_content = combineJsonToMD(json_path)
     filename= os.path.splitext(json_path)[0]+".md"
     with open (filename, 'w') as file:

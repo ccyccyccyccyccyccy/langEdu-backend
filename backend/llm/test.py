@@ -332,7 +332,7 @@ if __name__ == "__main__":
    print(f"Extracted {len(result)} concepts.")
    question_type = input("Multiple choice question / True or False question / Long question? Which type of question do you want?")
    
-   pp_questions = query_pp("COMP3511", result, question_type)
+   pp_questions = query_pp("RANDOM", result, question_type)
    for i, q in enumerate(pp_questions):
        print(f"Concept: {result[i].title}")
        print(f"{q}")
@@ -365,7 +365,7 @@ if __name__ == "__main__":
     # Convert the dictionary to a JSON string
    json_string = json.dumps(json_data, indent=4)
 # Write the JSON string to a file
-   file_path = "output\questions_3511_LQ.json"
+   file_path = r"output\questions_v1.0_noPP.json"
    with open(file_path, "w") as json_file:
     json_file.write(json_string)
     print(f"Questions saved to {file_path}")

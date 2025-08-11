@@ -51,3 +51,9 @@ Questions saved to output\questions_v0.1.json
 - Main changes, under the main section:
 - ```pp_questions = query_pp("COMP3511", result)```
 - Changing the subject to ```None``` means the subject filter is not imposed. 
+### Evaluation script
+- see ```evaluate.py```
+- Read the ```discussions.md``` to understand how the evaluation works first. 
+- ```evaluator.benchmark``` performs benchmarking with real PP questions. To do your own benchmarking, change the hardcoded values the ```subject``` and ```question_types``` inside the function. Otherwise, just refer to the values in ```discussion.md``
+- ```evaluator.evaluate``` is the main evaluation function. It evaluates the quality of questions after the json file has been generated from ```test.py```. If ```save_results``` has been set to True, a csv file will be saved in output/ . It contains the questions, the scores for each question, and the value of k used. For each question, the closer its score is to 1, the more different it is from authentic Qs. 
+

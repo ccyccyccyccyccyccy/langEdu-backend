@@ -170,10 +170,12 @@ class Evaluator():
             votes.append(result)
         return sum(votes)/ len(votes)
 
-    def benchmark(self, k=5):
-        subject = "COMP3511"
-        question_types = ["MCQ"]
-        mcqs = self.supabase.table("document").select("*").eq("session_id", self.session_id).eq("subject", subject).in_("question_type", question_types).execute()
+    def benchmark(self, subject, question_type, k=5):
+        """
+        the subject should be the same as the subject in the database.
+        question_type should be one of the Qtype enum values defined in db.py
+        """
+        mcqs = self.supabase.table("document").select("*").eq("session_id", self.session_id).eq("subject", subject).eq("question_type", question_type).execute()
         QAPairs=[]
         benchmark_results = []
         for mcq in mcqs.data:
@@ -182,7 +184,7 @@ class Evaluator():
         for QA in QAPairs:
             compare_questions = QAPairs.copy()
             compare_questions.pop(compare_questions.index(QA))
-            result = self._majority_vote(QA, subject, "MCQ", compare_questions, k=k)
+            result = self._majority_vote(QA, subject, question_type, compare_questions, k=k)
             benchmark_results.append(result)
         print(f"Benchmark results for {subject}: {sum(benchmark_results) / len(benchmark_results)}")
     
@@ -233,12 +235,12 @@ if __name__ == "__main__":
     load_dotenv()
     evaluator = Evaluator()
     #the following is for benchmarking 
-    #evaluator.benchmark(k=1)
+    evaluator.benchmark(k=1, subject="COMP3511", question_type="MCQ")
     # Uncomment the following line to run the evaluation
-    evaluator.evaluate(
-        file_path=r"output\questions_v1.0_withPP.json",
-        subject="COMP3511",
-        question_type="MCQ",
-        k=1,
-        save_results=True
-    )
+    # evaluator.evaluate(
+    #     file_path=r"output\questions_v1.0_withPP.json",
+    #     subject="COMP3511",
+    #     question_type="MCQ",
+    #     k=1,
+    #     save_results=True
+    # )
